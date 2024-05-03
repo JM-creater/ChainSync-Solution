@@ -2,7 +2,6 @@
 using ChainSyncSolution.Domain.Entities;
 using ChainSyncSolution.Infrastructure.Common.Abstraction;
 using ChainSyncSolution.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 
 namespace ChainSyncSolution.Infrastructure.Common.Persistence;
 
@@ -10,6 +9,12 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 {
     public UserRepository(ChainSyncDbContext _chainSyncDbContext) : base(_chainSyncDbContext)
     {
+
+    }
+
+    public User? GetUserByEmail(string email)
+    {
+        return _chainSyncDbContext.Users.SingleOrDefault(u => u.Email == email);
     }
 
     public async Task<User> Register(User user)
@@ -19,8 +24,10 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return user;
     }
 
-    public Task<User> GetByEmail(string email, CancellationToken cancellationToken)
+    public async Task<User> Login(User user)
     {
-        return _chainSyncDbContext.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        await _chainSyncDbContext.SaveChangesAsync();
+
+        return user;
     }
 }

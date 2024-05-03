@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace ChainSyncSolution.Domain.Dtos;
+﻿namespace ChainSyncSolution.Contracts.Common.Authentication;
 
 public sealed record RegisterRequest
 {
@@ -10,5 +8,5 @@ public sealed record RegisterRequest
     public string PhoneNumber { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string ProfileImage { get; set; } = null!;
-    public string Token { get; set; } 
+    public string Token { get; set; } = null!;
 }

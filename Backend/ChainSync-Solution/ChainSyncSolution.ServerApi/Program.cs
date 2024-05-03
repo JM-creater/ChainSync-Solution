@@ -2,6 +2,7 @@ using ChainSyncSolution.Application;
 using ChainSyncSolution.Application.Assets;
 using ChainSyncSolution.Infrastructure;
 using ChainSyncSolution.ServerApi;
+using ChainSyncSolution.ServerApi.Common.Errors;
 using ChainSyncSolution.ServerApi.Common.Settings;
 using Microsoft.AspNetCore.ResponseCompression;
 
@@ -35,8 +36,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
-    app.MapHealthChecks("/health");
-
     app.ConfigureFigures(builder.Configuration);
 
     if (app.Environment.IsDevelopment())
@@ -44,6 +43,10 @@ var app = builder.Build();
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
+
+    app.MapHealthChecks("/health");
 
     app.UseHttpsRedirection();
 

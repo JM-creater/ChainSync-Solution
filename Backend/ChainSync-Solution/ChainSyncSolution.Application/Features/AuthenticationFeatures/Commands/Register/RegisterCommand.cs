@@ -1,4 +1,4 @@
-﻿using ChainSyncSolution.Domain.Dtos;
+﻿using ChainSyncSolution.Contracts.Common.Authentication;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 

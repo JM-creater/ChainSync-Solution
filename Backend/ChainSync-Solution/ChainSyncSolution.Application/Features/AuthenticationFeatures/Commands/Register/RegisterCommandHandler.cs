@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using ChainSyncSolution.Application.Assets;
 using ChainSyncSolution.Application.Interfaces.Authentication;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
-using ChainSyncSolution.Domain.Dtos;
+using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Domain.Entities;
+using ChainSyncSolution.Domain.Errors;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 
 namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
 
@@ -30,13 +31,17 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
 
     public async Task<RegisterRequest> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
-        var user = _mapper.Map<User>(command);
+        if (_userRepository.GetUserByEmail(command.Email) is not null) 
+        {
+            throw new EmailExistsException(command.Email);
+        }
 
+        var user = _mapper.Map<User>(command);
 
         if (command.ProfileImage != null)
         {
-            string imagePath = await SaveProfileImages(command.ProfileImage);
-            user.ProfileImage = imagePath; 
+            string imagePath = await new AssetConfiguration().SaveProfileImages(command.ProfileImage);
+            user.ProfileImage = imagePath;
         }
 
         var token = _jwtTokenGenerator.GenerateToken(user);
@@ -51,33 +56,5 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
         await _userRepository.Register(user);
 
         return register;
-    }
-
-    public async Task<string?> SaveProfileImages(IFormFile? imageFile)
-    {
-        if (imageFile == null || imageFile.Length == 0)
-            return null;
-
-        string mainFolder = Path.Combine(Directory.GetCurrentDirectory(), "PathImages");
-        string subFolder = Path.Combine(mainFolder, "ProfileImage");
-
-        if (!Directory.Exists(mainFolder))
-        {
-            Directory.CreateDirectory(mainFolder);
-        }
-        if (!Directory.Exists(subFolder))
-        {
-            Directory.CreateDirectory(subFolder);
-        }
-
-        var fileName = Path.GetFileName(imageFile.FileName);
-        var filePath = Path.Combine(subFolder, fileName);
-
-        using (var stream = new FileStream(filePath, FileMode.Create))
-        {
-            await imageFile.CopyToAsync(stream);
-        }
-
-        return Path.Combine("PathImages", "ProfileImage", fileName);
     }
 }

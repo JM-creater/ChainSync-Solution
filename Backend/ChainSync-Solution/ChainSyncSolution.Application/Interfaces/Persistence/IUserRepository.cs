@@ -6,5 +6,6 @@ namespace ChainSyncSolution.Application.Interfaces.Persistence;
 public interface IUserRepository : IBaseRepository<User>
 {
     Task<User> Register(User user);
-    Task<User> GetByEmail(string email, CancellationToken request);
+    Task<User> Login(User user);
+    User? GetUserByEmail(string email);
 }
