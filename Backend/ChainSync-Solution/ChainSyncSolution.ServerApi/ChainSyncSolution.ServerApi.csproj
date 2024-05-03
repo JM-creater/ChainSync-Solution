@@ -14,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Errors\" />
     <Folder Include="PathImages\ProfileImage\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ChainSyncSolution.Application\ChainSyncSolution.Application.csproj" />
+    <ProjectReference Include="..\ChainSyncSolution.Contracts\ChainSyncSolution.Contracts.csproj" />
     <ProjectReference Include="..\ChainSyncSolution.Infrastructure\ChainSyncSolution.Infrastructure.csproj" />
   </ItemGroup>
 

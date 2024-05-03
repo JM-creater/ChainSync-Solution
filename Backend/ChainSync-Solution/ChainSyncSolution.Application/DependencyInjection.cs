@@ -3,13 +3,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using FluentValidation;
 using MediatR;
-using ChainSyncSolution.Application.Common.Mapping;
 using ChainSyncSolution.Application.Assets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Configuration;
+using ChainSyncSolution.Application.Common.Mapping;
 
 namespace ChainSyncSolution.Application;
 
@@ -24,7 +24,7 @@ public static class DependencyInjection
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-        services.AddTransient(
+        services.AddScoped(
             typeof(IPipelineBehavior<,>),
             typeof(ValidationBehavior<,>));
 

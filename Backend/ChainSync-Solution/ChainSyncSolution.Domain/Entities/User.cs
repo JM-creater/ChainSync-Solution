@@ -16,4 +16,6 @@ public class User : BaseEntity
     [StringLength(100)]
     public string Password { get; set; } = null!;
     public string? ProfileImage { get; set; }
+
+    public List<Order> Orders { get; set; } = new List<Order>();
 }
