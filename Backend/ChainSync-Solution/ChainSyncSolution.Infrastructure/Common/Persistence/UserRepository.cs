@@ -7,7 +7,8 @@ namespace ChainSyncSolution.Infrastructure.Common.Persistence;
 
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
-    public UserRepository(ChainSyncDbContext _chainSyncDbContext) : base(_chainSyncDbContext)
+    public UserRepository(ChainSyncDbContext _chainSyncDbContext) 
+        : base(_chainSyncDbContext)
     {
 
     }

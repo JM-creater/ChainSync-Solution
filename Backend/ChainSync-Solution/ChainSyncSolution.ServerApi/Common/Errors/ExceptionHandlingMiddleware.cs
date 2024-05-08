@@ -1,4 +1,5 @@
 ﻿using ChainSyncSolution.Domain.Errors;
+using ChainSyncSolution.ServerApi.Common.Settings;
 
 namespace ChainSyncSolution.ServerApi.Common.Errors;
 
@@ -25,7 +26,7 @@ public class ExceptionHandlingMiddleware
         catch (Exception ex)
         {
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            await context.Response.WriteAsJsonAsync(new { error = "An unexpected error occurred", details = ex.Message });
+            await context.Response.WriteAsJsonAsync(new { error = ErrorSettings.ErrorSetting, details = ex.Message });
         }
     }
 }
