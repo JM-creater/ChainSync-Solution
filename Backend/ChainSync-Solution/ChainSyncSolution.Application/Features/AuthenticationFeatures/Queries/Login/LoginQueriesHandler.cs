@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ChainSyncSolution.Application.Common.Exceptions;
 using ChainSyncSolution.Application.Interfaces.Authentication;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
@@ -31,6 +32,11 @@ public class LoginQueriesHandler : IRequestHandler<LoginQueries, LoginRequest>
         LoginQueries queries,
         CancellationToken cancellationToken)
     {
+        if (_userRepository.CheckEmailLogin(queries.Email) is null)
+        {
+            throw new CheckEmailLoginException(queries.Email);
+        }
+
         var user = _mapper.Map<User>(queries);
 
         var token = _jwtTokenGenerator.GenerateLoginToken(user);

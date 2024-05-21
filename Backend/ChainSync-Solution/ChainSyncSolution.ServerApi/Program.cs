@@ -3,6 +3,7 @@ using ChainSyncSolution.Application.Assets;
 using ChainSyncSolution.Infrastructure;
 using ChainSyncSolution.ServerApi;
 using ChainSyncSolution.ServerApi.Common.Errors;
+using ChainSyncSolution.ServerApi.Common.Policy;
 using ChainSyncSolution.ServerApi.Common.Settings;
 using Microsoft.AspNetCore.ResponseCompression;
 
@@ -10,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddPresentation()
                     .AddApplication()
-                    .AddInfrastructure(builder.Configuration);
+                    .AddInfrastructure(builder.Configuration)
+                    .AddCorsPolicy();
 
     builder.Services.AddResponseCompression(options =>
     {
@@ -49,6 +51,8 @@ var app = builder.Build();
     app.MapHealthChecks("/health");
 
     app.UseHttpsRedirection();
+
+    app.UseCors();
 
     app.UseAuthorization();
 

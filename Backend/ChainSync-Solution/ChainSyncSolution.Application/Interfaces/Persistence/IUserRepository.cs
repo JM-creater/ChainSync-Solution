@@ -8,4 +8,5 @@ public interface IUserRepository : IBaseRepository<User>
     Task<User> Register(User user);
     Task<User> Login(User user);
     User? GetUserByEmail(string email);
+    Task<User?> CheckEmailLogin(string email);
 }
