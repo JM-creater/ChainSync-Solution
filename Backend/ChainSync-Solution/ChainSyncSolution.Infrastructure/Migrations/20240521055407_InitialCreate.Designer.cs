@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChainSyncSolution.Infrastructure.Migrations
 {
     [DbContext(typeof(ChainSyncDbContext))]
-    [Migration("20240516073159_InitialCreate")]
+    [Migration("20240521055407_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

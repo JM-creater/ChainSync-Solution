@@ -1,4 +1,4 @@
-﻿using ChainSyncSolution.Domain.Errors;
+﻿using ChainSyncSolution.Application.Common.Exceptions;
 using ChainSyncSolution.ServerApi.Common.Settings;
 
 namespace ChainSyncSolution.ServerApi.Common.Errors;
@@ -19,6 +19,11 @@ public class ExceptionHandlingMiddleware
             await _next(context);
         }
         catch (EmailExistsException ex)
+        {
+            context.Response.StatusCode = StatusCodes.Status409Conflict;
+            await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+        }
+        catch (CheckEmailLoginException ex)
         {
             context.Response.StatusCode = StatusCodes.Status409Conflict;
             await context.Response.WriteAsJsonAsync(new { error = ex.Message });

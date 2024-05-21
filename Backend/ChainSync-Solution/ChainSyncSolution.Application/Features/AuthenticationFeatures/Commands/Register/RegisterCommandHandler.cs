@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using ChainSyncSolution.Application.Assets;
+using ChainSyncSolution.Application.Common.Exceptions;
 using ChainSyncSolution.Application.Interfaces.Authentication;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Domain.Entities;
-using ChainSyncSolution.Domain.Errors;
 using MediatR;
 
 namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
