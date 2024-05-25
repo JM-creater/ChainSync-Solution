@@ -7,7 +7,7 @@ public class Product : BaseEntity
     public string Name { get; set; } = null!;
     public string Description { get; set; } = null!;
     public Guid SupplierId { get; set; }
-    public Supplier Supplier { get; set; } = new Supplier();    
+    public User Supplier { get; set; } = new User();    
     public string PhoneNumber { get; set; } = null!;
     public float Price { get; set; }
     public string ProfileImage { get; set; } = null!;

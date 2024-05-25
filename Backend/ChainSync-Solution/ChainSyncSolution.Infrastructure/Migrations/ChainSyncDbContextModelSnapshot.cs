@@ -162,52 +162,16 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("ChainSyncSolution.Domain.Entities.Supplier", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("DateCreated")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTimeOffset>("DateUpdated")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfileImage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Suppliers");
-                });
-
             modelBuilder.Entity("ChainSyncSolution.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTimeOffset>("DateCreated")
                         .HasColumnType("datetimeoffset");
@@ -224,6 +188,12 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsValidated")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -243,9 +213,30 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.Property<string>("ProfileImage")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("29bd7eba-1ef0-41d3-aec0-a865349b0d06"),
+                            CompanyName = "",
+                            DateCreated = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateUpdated = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "garado@gmail.com",
+                            FirstName = "Joseph Martin",
+                            IsActive = true,
+                            IsValidated = true,
+                            LastName = "Garado",
+                            Password = "12345",
+                            PhoneNumber = "12345678901",
+                            ProfileImage = "PathImages\\Profile\\Joseph Martin T. Garado.png",
+                            Role = 3
+                        });
                 });
 
             modelBuilder.Entity("ChainSyncSolution.Domain.Entities.Inventory", b =>
@@ -291,7 +282,7 @@ namespace ChainSyncSolution.Infrastructure.Migrations
 
             modelBuilder.Entity("ChainSyncSolution.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("ChainSyncSolution.Domain.Entities.Supplier", "Supplier")
+                    b.HasOne("ChainSyncSolution.Domain.Entities.User", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -313,14 +304,11 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("ChainSyncSolution.Domain.Entities.Supplier", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("ChainSyncSolution.Domain.Entities.User", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

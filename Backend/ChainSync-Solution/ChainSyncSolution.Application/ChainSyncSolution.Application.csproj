@@ -26,4 +26,8 @@
     <ProjectReference Include="..\ChainSyncSolution.Domain\ChainSyncSolution.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\AuthenticationFeatures\Commands\SupplierRegister\" />
+  </ItemGroup>
+
 </Project>
