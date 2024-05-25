@@ -31,7 +31,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
 
     public async Task<RegisterRequest> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
-        if (_userRepository.GetUserByEmail(command.Email) is not null) 
+        if (_userRepository.GetUserByEmail(command.Email) is not null)
         {
             throw new EmailExistsException(command.Email);
         }

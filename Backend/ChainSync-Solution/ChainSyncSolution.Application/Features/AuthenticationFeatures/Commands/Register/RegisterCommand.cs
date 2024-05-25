@@ -10,4 +10,5 @@ public sealed record RegisterCommand(
     string Email,
     string PhoneNumber,
     string Password,
+    string CompanyName,
     IFormFile ProfileImage) : IRequest<RegisterRequest>;

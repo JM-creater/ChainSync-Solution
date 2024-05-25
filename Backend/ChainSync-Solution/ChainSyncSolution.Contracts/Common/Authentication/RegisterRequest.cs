@@ -7,6 +7,7 @@ public sealed record RegisterRequest
     public string Email { get; set; } = null!;
     public string PhoneNumber { get; set; } = null!;
     public string Password { get; set; } = null!;
+    public string CompanyName { get; set; } = null!;
     public string ProfileImage { get; set; } = null!;
     public string Token { get; set; } = null!;
 }

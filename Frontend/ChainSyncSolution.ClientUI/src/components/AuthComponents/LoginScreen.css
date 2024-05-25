@@ -1,0 +1,122 @@
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+
+.left {
+    background: url('../../assets/Background/bg-image-login.jpeg') no-repeat center center;
+    background-size: cover;
+
+    .main-title {
+        z-index: 1;
+        color: white;
+    }
+
+    .main-logo {
+        z-index: 99999999;
+        position: absolute;
+        max-width: 180px;
+        max-height: 180px;
+        margin-bottom: 150px;
+    }
+
+    .container {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        position: relative;
+        flex-direction: column;
+    }
+    .container::before {
+        content: "";
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute; 
+        top: 0; 
+        right: 0;
+        bottom: 0; 
+        left: 0;
+    }
+}
+
+.right {
+    background-color: white;
+    
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+.login-form-container {
+    width: 100vh;
+    margin: auto;
+    padding: 20px;
+}
+
+.title-label {
+    color: black;
+    text-align: center;
+    padding: 8px;
+    font-weight: 800;
+}
+
+.form-remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form-forgot {
+    float: right; 
+    margin-left: auto; 
+}
+
+.login-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-register-container {
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form-button {
+    width: 40vh;
+}
+
+.register-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.register-title {
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    section {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    
+    .left {
+        display: none;
+    }
+
+    .login-form-container {
+        width: 90%; 
+    }
+
+    .login-form-button {
+        width: 100%; 
+    }
+}
