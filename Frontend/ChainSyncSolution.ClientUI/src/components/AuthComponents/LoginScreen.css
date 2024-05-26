@@ -30,6 +30,7 @@ section {
         position: relative;
         flex-direction: column;
     }
+    
     .container::before {
         content: "";
         background-color: rgba(0, 0, 0, 0.6);
@@ -50,56 +51,88 @@ section {
         justify-content: center;
         height: 100%;
     }
+
+    .login-form-container {
+        width: 100vh;
+        margin: auto;
+        padding: 20px;
+    }
+    
+    .title-label {
+        color: black;
+        text-align: center;
+        padding: 8px;
+        font-weight: 800;
+    }
+    
+    .form-remember-forgot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .login-form-forgot {
+        float: right; 
+        margin-left: auto; 
+    }
+    
+    .login-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .login-register-container {
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .login-form-button {
+        width: 40vh;
+    }
+    
+    .register-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .register-title {
+        margin-left: 5px;
+    }
 }
 
-.login-form-container {
-    width: 100vh;
-    margin: auto;
-    padding: 20px;
-}
-
-.title-label {
-    color: black;
+.option-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 8px;
-    font-weight: 800;
-}
+    flex-direction: column;
 
-.form-remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .option-main-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: auto;
+    }
 
-.login-form-forgot {
-    float: right; 
-    margin-left: auto; 
-}
+    .option-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 50px;
+    }
 
-.login-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-register-container {
-    justify-content: center;
-    align-items: center;
-}
-
-.login-form-button {
-    width: 40vh;
-}
-
-.register-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.register-title {
-    margin-left: 5px;
+    .option-title {
+        position: absolute;
+        margin-bottom: 280px;
+    }
+    
+    .option-item Button {
+        margin-top: 20px; 
+    }
 }
 
 @media (max-width: 768px) {

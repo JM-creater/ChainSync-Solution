@@ -8,7 +8,7 @@ using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Domain.Entities;
 using MediatR;
 
-namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
+namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterRequest>
 {

@@ -16,7 +16,7 @@ export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
         try {
             const response = await loginUser(values);
             form.resetFields();
-            showSuccessToast(response.message || "Login successful!"); 
+            showSuccessToast(response.message || "Login successful!");
         } catch (error) {
             console.log(error);
         } finally {
@@ -28,8 +28,15 @@ export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
         console.log('Failed:', errorInfo);
     };
 
+    const HandleValue = {
+        HandleLogin, 
+        onFinishFailed, 
+        isLoading, 
+        form
+    };
+
     return (
-        <LoginContext.Provider value={{ HandleLogin, onFinishFailed, isLoading, form }}>
+        <LoginContext.Provider value={HandleValue}>
             {children}
         </LoginContext.Provider>
     )

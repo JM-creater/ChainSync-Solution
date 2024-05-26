@@ -11,6 +11,8 @@ public class User : BaseEntity
     [StringLength(20)]
     public string LastName { get; set; } = null!;
     [StringLength(30)]
+    public string Gender { get; set; } = null!;
+    [StringLength(30)]
     public string Email { get; set; } = null!;
     [StringLength(11)]
     public string PhoneNumber { get; set; } = null!;
@@ -18,6 +20,8 @@ public class User : BaseEntity
     public string Password { get; set; } = null!;
     [StringLength(50)]
     public string CompanyName { get; set; } = null!;
+    [StringLength(50)]
+    public string Address { get; set; } = null!;
     public string? ProfileImage { get; set; }
     public bool IsActive { get; set; }
     public bool IsValidated { get; set; }

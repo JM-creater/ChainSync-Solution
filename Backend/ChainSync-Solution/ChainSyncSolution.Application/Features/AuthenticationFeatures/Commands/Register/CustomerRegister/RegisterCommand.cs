@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
-namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
+namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 
 public sealed record RegisterCommand(
     string FirstName,
