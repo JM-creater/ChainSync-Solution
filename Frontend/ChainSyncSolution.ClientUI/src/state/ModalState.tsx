@@ -10,8 +10,14 @@ export const ModalProvider: React.FC<ModalContextProps> = ({ children }) => {
 
     const closeModal = () => setIsModalOpen(false);
 
+    const HandleValue = {
+        closeModal, 
+        showModal, 
+        isModalOpen
+    };
+
     return (
-        <ModalContext.Provider value={{ closeModal, showModal, isModalOpen }}>
+        <ModalContext.Provider value={HandleValue}>
             {children}
         </ModalContext.Provider>
     );

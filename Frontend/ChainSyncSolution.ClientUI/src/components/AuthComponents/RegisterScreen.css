@@ -1,0 +1,23 @@
+.form-register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.title-label {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.button-register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-content-button,
+.register-cancel-button {
+    width: 30vh;
+}

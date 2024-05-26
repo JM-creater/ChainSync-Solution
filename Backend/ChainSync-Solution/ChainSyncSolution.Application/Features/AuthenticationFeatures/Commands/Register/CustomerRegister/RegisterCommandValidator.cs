@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
+namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {

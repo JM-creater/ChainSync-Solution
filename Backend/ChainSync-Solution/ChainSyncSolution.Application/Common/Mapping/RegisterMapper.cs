@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register;
+using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
 using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Domain.Entities;

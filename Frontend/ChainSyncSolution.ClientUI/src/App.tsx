@@ -8,26 +8,29 @@ import { ModalProvider } from './state/ModalState'
 import { toastConfig } from './utils/toastConfig'
 import { LoginProvider } from './state/LoginState'
 import { MenuProvider } from './state/MenuItemState'
+import { RegisterProvider } from './state/RegisterState'
 
 const App = () => {
 
   return (
     <React.Fragment>
       <ToastContainer {...toastConfig} />
-      <BrowserRouter> 
+      <BrowserRouter>
         <Routes>
-        <Route
-          index
-          element={
-            <MenuProvider>
-              <LoginProvider>
-                <ModalProvider>
-                  <LoginScreen />
-                </ModalProvider>
-              </LoginProvider>
-            </MenuProvider>
-          }
-        />
+          <Route
+            index
+            element={
+             <RegisterProvider>
+              <MenuProvider>
+                <LoginProvider>
+                  <ModalProvider>
+                    <LoginScreen />
+                  </ModalProvider>
+                </LoginProvider>
+              </MenuProvider>
+             </RegisterProvider>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

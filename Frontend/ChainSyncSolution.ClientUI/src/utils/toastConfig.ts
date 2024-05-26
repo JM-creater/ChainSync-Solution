@@ -1,7 +1,7 @@
 import { ToastPosition, Zoom } from "react-toastify";
 
 export const toastConfig = {
-    position: "top-right" as ToastPosition,
+    position: "top-center" as ToastPosition,
     autoClose: 1500,
     hideProgressBar: false,
     newestOnTop: true,
