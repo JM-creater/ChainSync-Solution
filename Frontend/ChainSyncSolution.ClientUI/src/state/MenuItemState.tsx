@@ -7,6 +7,7 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
     const [selectedCustomerRegister, setSelectedCustomerRegister] = useState<number>(0);
     const [selectedSupplierRegister, setSelectedSupplierRegister] = useState<number>(1);
+    const [randomNumber, setRandomNumber] = useState<number>(0);
 
     const HandleChangeItemMenu = () => {
         setSelectedMenuItem(1);
@@ -18,20 +19,28 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
 
     const HandleChangeSupplierMenu = () => {
         setSelectedSupplierRegister(2);
+        setRandomNumber(Math.floor(1000000000 + Math.random() * 9000000000));
     };
 
     const HandleCustomerRegisterCancel = () => {
-        setSelectedCustomerRegister(0);
+        window.location.reload();
     };
+
+    const HandleSupplierRegisterCancel = () => {
+        window.location.reload();
+    };
+
 
     const HandleValue = {
         HandleChangeItemMenu,
         HandleChangeCustomerMenu,
         HandleChangeSupplierMenu,
         HandleCustomerRegisterCancel,
+        HandleSupplierRegisterCancel,
         selectedMenuItem,
         selectedCustomerRegister,
-        selectedSupplierRegister
+        selectedSupplierRegister,
+        randomNumber
     };
 
     return (

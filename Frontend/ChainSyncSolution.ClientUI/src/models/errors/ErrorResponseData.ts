@@ -1,3 +1,8 @@
+import { AxiosResponse } from "axios";
+
 export interface ErrorResponseData {
-    message: string
+    response?: AxiosResponse<unknown>;
+    error?: string;
+    status?: number;
+    message?: string;
 }

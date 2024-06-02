@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import { Login, LoginProps } from "../models/Login";
 import { Form, FormProps } from "antd";
 import { loginUser } from "../services/AuthService";
-import { showSuccessToast } from "../utils";
+import { showFailedToast, showSuccessToast } from "../utils";
 import { LoginContextType } from "../models/types/LoginType";
 
 export const LoginContext = createContext<LoginContextType | null>(null);
@@ -15,8 +15,13 @@ export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
         setIsLoading(true);
         try {
             const response = await loginUser(values);
-            form.resetFields();
-            showSuccessToast(response.message || "Login successful!");
+            if (response.status === 200) {
+                form.resetFields();
+                showSuccessToast("Login successful");
+            } else {
+                showFailedToast(response.data.message || "Failed to Login.");
+            }
+           
         } catch (error) {
             console.log(error);
         } finally {

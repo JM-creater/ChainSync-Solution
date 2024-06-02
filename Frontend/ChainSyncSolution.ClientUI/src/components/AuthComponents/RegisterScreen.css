@@ -1,4 +1,6 @@
-.form-register-container {
+/* Customer Styles */
+
+.form-customer-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,18 +8,36 @@
     padding: 25px;
 }
 
-.title-label {
+.title-register-customer {
     text-align: center;
     margin-bottom: 24px;
 }
 
-.button-register-container {
+.register-content-customer,
+.register-cancel-customer {
+    width: 30vh;
+}
+
+/* Supplier Styles */
+
+.form-supplier-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    padding: 25px;
 }
 
-.register-content-button,
-.register-cancel-button {
+.title-register-supplier {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.register-content-supplier,
+.register-cancel-supplier {
     width: 30vh;
+}
+
+.dagger-container {
+    margin-bottom: 30px;
 }

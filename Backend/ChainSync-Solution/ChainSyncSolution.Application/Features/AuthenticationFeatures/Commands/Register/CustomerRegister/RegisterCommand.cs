@@ -1,6 +1,5 @@
 ﻿using ChainSyncSolution.Contracts.Common.Authentication;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 
 namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 
@@ -10,5 +9,6 @@ public sealed record RegisterCommand(
     string Email,
     string PhoneNumber,
     string Password,
+    string Gender,
     string CompanyName,
-    IFormFile ProfileImage) : IRequest<RegisterRequest>;
+    string Address) : IRequest<RegisterRequest>;

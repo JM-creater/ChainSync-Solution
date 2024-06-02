@@ -2,6 +2,7 @@
 
 public class AssetImageOptions
 {
-    public string PathImages { get; set; }
-    public string ProfileImage { get; set; }
+    public string PathImages { get; set; } = null!;
+    public string ProfileImage { get; set; } = null!;
+    public string Document { get; set; } = null!;
 }

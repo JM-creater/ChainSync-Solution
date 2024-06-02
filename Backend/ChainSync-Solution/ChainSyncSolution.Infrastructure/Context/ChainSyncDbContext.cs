@@ -6,10 +6,10 @@ namespace ChainSyncSolution.Infrastructure.Context;
 
 public class ChainSyncDbContext : DbContext
 {
-    public ChainSyncDbContext(DbContextOptions options) 
+    public ChainSyncDbContext(DbContextOptions options)
         : base(options)
     {
-
+        Database.EnsureCreated();
     }
 
     public DbSet<User> Users => Set<User>();
@@ -29,20 +29,27 @@ public class ChainSyncDbContext : DbContext
 
 
         modelBuilder.Entity<User>().HasData(
-            new User
-            {
-                Id = Guid.NewGuid(),
-                FirstName = "Joseph Martin",
-                LastName = "Garado",
-                Email = "garado@gmail.com",
-                PhoneNumber = "12345678901",
-                Password = "12345",
-                CompanyName = string.Empty,
-                ProfileImage = "PathImages\\Profile\\Joseph Martin T. Garado.png",
-                IsActive = true,
-                IsValidated = true,
-                Role = UserRole.Admin
-            }
+             new User(
+                 id: Guid.NewGuid(),
+                 dateCreated: DateTimeOffset.UtcNow,
+                 dateUpdated: DateTimeOffset.UtcNow,
+                 dateDeleted: null,
+                 firstName: "Joseph Martin",
+                 lastName: "Garado",
+                 supplierId: string.Empty,
+                 gender: string.Empty,
+                 email: "garado@gmail.com",
+                 phoneNumber: "12345678901",
+                 password: "12345",
+                 address: string.Empty,
+                 companyName: string.Empty,
+                 bizLicenseNumber: string.Empty,
+                 profileImage: "PathImages\\Profile\\Joseph Martin T. Garado.png",
+                 document: string.Empty,
+                 isActive: true,
+                 isValidated: true,
+                 role: UserRole.Admin
+             )
         );
     }
 }

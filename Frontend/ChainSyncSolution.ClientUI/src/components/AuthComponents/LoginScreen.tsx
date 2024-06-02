@@ -32,7 +32,8 @@ const LoginScreen: React.FC = () => {
         HandleChangeSupplierMenu,
         selectedMenuItem,
         selectedCustomerRegister,
-        selectedSupplierRegister
+        selectedSupplierRegister,
+        randomNumber
     } = useMenuItem();
 
     return (
@@ -50,16 +51,16 @@ const LoginScreen: React.FC = () => {
             <div className='right'>
                 <div className="container">
                     {
-                        selectedMenuItem == 1 ? (
+                        selectedMenuItem === 1 ? (
                             <React.Fragment>
                                 {
-                                    selectedCustomerRegister == 1 ? (
+                                    selectedCustomerRegister === 1 ? (
                                         <CustomerRegister />
-                                    ) : selectedSupplierRegister == 2 ? (
-                                        <SupplierRegister />
+                                    ) : selectedSupplierRegister === 2 ? (
+                                        <SupplierRegister randomNumber={randomNumber}/>
                                     ) : (
                                         <div className="option-main">
-                                            <Title level={3} className="option-title">Choose Your Role</Title>
+                                            <Title level={3} className="option-title">CHOOSE YOUR ROLE</Title>
                                             <div className="option-main-container">
                                                 <div className="option-item">
                                                     <img src={Customer} alt="customer image" width={120} height={120} />

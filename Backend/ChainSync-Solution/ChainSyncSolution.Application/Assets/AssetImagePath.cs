@@ -16,8 +16,13 @@ public class AssetImagePath
         return _assetImageOptions.PathImages;
     }
 
-    public string GetVoterPath()
+    public string GetProfilePath()
     {
         return Path.Combine(_assetImageOptions.PathImages, _assetImageOptions.ProfileImage);
+    }
+
+    public string GetDocumentPath()
+    {
+        return Path.Combine(_assetImageOptions.PathImages, _assetImageOptions.Document);
     }
 }

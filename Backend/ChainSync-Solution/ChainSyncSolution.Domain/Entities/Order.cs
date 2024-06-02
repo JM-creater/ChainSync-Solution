@@ -4,10 +4,55 @@ namespace ChainSyncSolution.Domain.Entities;
 
 public class Order : BaseEntity
 {
-    public Guid UserId { get; set; }
-    public User User { get; set; } = new User();
-    public DateTime OrderDate { get; set; }
-    public float TotalAmount { get; set; }
+    public Order(
+       Guid id,
+       DateTimeOffset dateCreated,
+       DateTimeOffset dateUpdated,
+       DateTimeOffset? dateDeleted,
+       Guid userId,
+       DateTime orderDate,
+       float totalAmount)
+     : base(id,
+            dateCreated,
+            dateUpdated,
+            dateDeleted)
+    {
+        UserId = userId;
+        OrderDate = orderDate;
+        TotalAmount = totalAmount;
+        OrderItems = new List<OrderItem>();
+    }
 
-    public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    public Guid UserId { get; private set; }
+    public virtual User User { get; private set; } = null!;
+    public DateTime OrderDate { get; private set; }
+    public float TotalAmount { get; private set; }
+
+    public List<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
+
+    // Methods to set fields
+    public void SetUserId(Guid userId)
+    {
+        UserId = userId;
+    }
+
+    public void SetUser(User user)
+    {
+        User = user;
+    }
+
+    public void SetOrderDate(DateTime orderDate)
+    {
+        OrderDate = orderDate;
+    }
+
+    public void SetTotalAmount(float totalAmount)
+    {
+        TotalAmount = totalAmount;
+    }
+
+    public void SetOrderItems(List<OrderItem> orderItems)
+    {
+        OrderItems = orderItems ?? new List<OrderItem>();
+    }
 }
