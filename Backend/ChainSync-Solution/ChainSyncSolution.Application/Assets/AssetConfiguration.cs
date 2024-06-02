@@ -1,4 +1,5 @@
 ﻿using ChainSyncSolution.Application.Assets.Common;
+using ChainSyncSolution.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Http;
 
 namespace ChainSyncSolution.Application.Assets;
@@ -9,15 +10,15 @@ public class AssetConfiguration
     {
         if (imageFile == null || imageFile.Length == 0)
         {
-            throw new ArgumentException("Invalid image file provided.");
+            throw new InvalidImageProvideException(imageFile);
         }
 
         string mainFolder = Path.Combine(
             Directory.GetCurrentDirectory(),
-            CatalogSettings.MainFolderSetting);
+            ProfileSettings.MainFolderProfile);
         string subFolder = Path.Combine(
             mainFolder,
-            CatalogSettings.SubFolderSetting);
+            ProfileSettings.SubFolderProfile);
 
         if (!Directory.Exists(mainFolder))
         {
@@ -37,8 +38,45 @@ public class AssetConfiguration
         }
 
         return Path.Combine(
-            CatalogSettings.MainFolderSetting,
-            CatalogSettings.SubFolderSetting,
+            ProfileSettings.MainFolderProfile,
+            ProfileSettings.SubFolderProfile,
+            fileName);
+    }
+
+    public async Task<string> SaveDocumentsImages(IFormFile imageFile)
+    {
+        if (imageFile == null || imageFile.Length == 0)
+        {
+            throw new InvalidImageProvideException(imageFile);
+        }
+
+        string mainFolder = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            DocumentsSettings.MainFolderDocument);
+        string subFolder = Path.Combine(
+            mainFolder,
+            DocumentsSettings.SubFolderDocument);
+
+        if (!Directory.Exists(mainFolder))
+        {
+            Directory.CreateDirectory(mainFolder);
+        }
+        if (!Directory.Exists(subFolder))
+        {
+            Directory.CreateDirectory(subFolder);
+        }
+
+        var fileName = Path.GetFileName(imageFile.FileName);
+        var filePath = Path.Combine(subFolder, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await imageFile.CopyToAsync(stream);
+        }
+
+        return Path.Combine(
+            DocumentsSettings.MainFolderDocument,
+            DocumentsSettings.SubFolderDocument,
             fileName);
     }
 }

@@ -2,7 +2,7 @@
 
 public enum UserRole
 {
-    Customer = 1,
-    Supplier = 2,
-    Admin = 3
+    Customer = 10,
+    Supplier = 20,
+    Admin = 30
 }

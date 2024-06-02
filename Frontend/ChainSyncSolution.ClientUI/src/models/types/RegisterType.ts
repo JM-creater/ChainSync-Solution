@@ -1,10 +1,17 @@
-import { FormProps } from "antd";
-import { Register } from "../Register";
+import { FormInstance, FormProps } from "antd";
+import { CustomersRegister, SuppliersRegister } from "../Register";
 
 export interface RegisterContextType {
-    HandleRegister: FormProps<Register>['onFinish'];
+    HandleCustomerRegister: FormProps<CustomersRegister>['onFinish'];
+    HandleSupplierRegister: FormProps<SuppliersRegister>['onFinish'];
+    isLoading: boolean;
+    form: FormInstance;
 }
 
 export interface RegisterProps {
     children: React.ReactNode;
+}
+
+export interface SupplierRegisterProps {
+    randomNumber: number
 }
