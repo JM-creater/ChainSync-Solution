@@ -7,6 +7,7 @@ using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Domain.Entities;
 using ChainSyncSolution.Domain.Common.Enum;
 using MediatR;
+using ChainSyncSolution.Application.Common.Security;
 
 namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 
@@ -17,29 +18,26 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
     private readonly IMapper _mapper;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
     private readonly IExceptionConfiguration _exceptionConfiguration;
-    private readonly IPasswordEncryption _passwordEncryption;
 
     public RegisterCommandHandler(
         IUnitOfWork unitOfWork,
         IUserRepository userRepository,
         IMapper mapper,
         IJwtTokenGenerator jwtTokenGenerator,
-        IExceptionConfiguration exceptionConfiguration,
-        IPasswordEncryption passwordEncryption)
+        IExceptionConfiguration exceptionConfiguration)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
         _mapper = mapper;
         _jwtTokenGenerator = jwtTokenGenerator;
         _exceptionConfiguration = exceptionConfiguration;
-        _passwordEncryption = passwordEncryption;
     }
 
     public async Task<RegisterRequest> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         await _exceptionConfiguration.CustomerRegisterValidator(command);
 
-        var hashedPassword = _passwordEncryption.HashPassword(command.Password);
+        var hashedPassword = PasswordEncryption.HashPassword(command.Password);
         var user = _mapper.Map<User>(command);
         user.SetPassword(hashedPassword);
 

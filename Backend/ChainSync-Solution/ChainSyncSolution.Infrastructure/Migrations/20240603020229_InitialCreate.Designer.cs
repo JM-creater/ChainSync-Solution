@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChainSyncSolution.Infrastructure.Migrations
 {
     [DbContext(typeof(ChainSyncDbContext))]
-    [Migration("20240602075615_InitialCreate")]
+    [Migration("20240603020229_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -260,12 +260,12 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("23b24293-a741-4964-9b40-db4ea9287e0a"),
+                            Id = new Guid("37c6630a-4b71-46ca-a2b2-3ebb7ee7f3a5"),
                             Address = "",
                             BizLicenseNumber = "",
                             CompanyName = "",
-                            DateCreated = new DateTimeOffset(new DateTime(2024, 6, 2, 7, 56, 13, 692, DateTimeKind.Unspecified).AddTicks(2420), new TimeSpan(0, 0, 0, 0, 0)),
-                            DateUpdated = new DateTimeOffset(new DateTime(2024, 6, 2, 7, 56, 13, 692, DateTimeKind.Unspecified).AddTicks(2426), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateCreated = new DateTimeOffset(new DateTime(2024, 6, 3, 2, 2, 28, 216, DateTimeKind.Unspecified).AddTicks(4716), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateUpdated = new DateTimeOffset(new DateTime(2024, 6, 3, 2, 2, 28, 216, DateTimeKind.Unspecified).AddTicks(4720), new TimeSpan(0, 0, 0, 0, 0)),
                             Document = "",
                             Email = "garado@gmail.com",
                             FirstName = "Joseph Martin",
@@ -273,7 +273,7 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                             IsActive = true,
                             IsValidated = true,
                             LastName = "Garado",
-                            Password = "12345",
+                            Password = "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
                             PhoneNumber = "12345678901",
                             ProfileImage = "PathImages\\Profile\\Joseph Martin T. Garado.png",
                             Role = 30,

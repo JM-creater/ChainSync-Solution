@@ -20,7 +20,7 @@ export interface SuppliersRegister {
     bizLicenseNumber: string;
 }
 
-type FileType = {
+export interface FileType {
     uid: string;
     name: string;
     status: string;

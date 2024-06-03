@@ -9,6 +9,9 @@ import { toastConfig } from './utils/toastConfig'
 import { LoginProvider } from './state/LoginState'
 import { MenuProvider } from './state/MenuItemState'
 import { RegisterProvider } from './state/RegisterState'
+import LandingScreen from './components/Landing/LandingScreen'
+import Dashboard_Supplier from './components/Dashboard/Dashboard_Supplier'
+import Dashboard_Admin from './components/Dashboard/Dashboard_Admin'
 
 const App = () => {
 
@@ -31,6 +34,11 @@ const App = () => {
              </RegisterProvider>
             }
           />
+          <Route path='/home' element={ <LandingScreen/> } />
+
+          <Route path='/supplier-dashboard' element={ <Dashboard_Supplier/> } />
+
+          <Route path='/admin-dashboard' element={ <Dashboard_Admin/> } />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
