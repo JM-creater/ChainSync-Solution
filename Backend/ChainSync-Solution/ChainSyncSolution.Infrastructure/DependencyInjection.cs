@@ -38,8 +38,6 @@ public static class DependencyInjection
 
         services.AddScoped<IExceptionConfiguration, ExceptionConfiguration>();
 
-        services.AddScoped<IPasswordEncryption, PasswordEncryption>();
-
         return services;
     }
 

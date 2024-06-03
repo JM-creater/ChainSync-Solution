@@ -1,4 +1,5 @@
-﻿using ChainSyncSolution.Domain.Common.Enum;
+﻿using ChainSyncSolution.Application.Common.Security;
+using ChainSyncSolution.Domain.Common.Enum;
 using ChainSyncSolution.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,7 @@ public class ChainSyncDbContext : DbContext
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ChainSyncDbContext).Assembly);
 
+        var hashedPassword = PasswordEncryption.HashPassword("123456");
 
         modelBuilder.Entity<User>().HasData(
              new User(
@@ -40,7 +42,7 @@ public class ChainSyncDbContext : DbContext
                  gender: string.Empty,
                  email: "garado@gmail.com",
                  phoneNumber: "12345678901",
-                 password: "12345",
+                 password: hashedPassword,
                  address: string.Empty,
                  companyName: string.Empty,
                  bizLicenseNumber: string.Empty,

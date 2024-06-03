@@ -1,6 +1,5 @@
-﻿using ChainSyncSolution.Application.Interfaces.Authentication;
+﻿using ChainSyncSolution.Application.Common.Security;
 using ChainSyncSolution.Application.Interfaces.Persistence;
-using ChainSyncSolution.Domain.Common.Enum;
 using ChainSyncSolution.Domain.Entities;
 using ChainSyncSolution.Infrastructure.Common.Abstraction;
 using ChainSyncSolution.Infrastructure.Context;
@@ -10,12 +9,11 @@ namespace ChainSyncSolution.Infrastructure.Common.Persistence;
 
 public class UserRepository : BaseRepository<User>, IUserRepository
 {
-    private readonly IPasswordEncryption _passwordEncryption;
 
-    public UserRepository(ChainSyncDbContext _chainSyncDbContext, IPasswordEncryption passwordEncryption)
+    public UserRepository(ChainSyncDbContext _chainSyncDbContext)
         : base(_chainSyncDbContext)
     {
-        _passwordEncryption = passwordEncryption;
+
     }
 
     public async Task<User?> CheckPasswordLoginAsync(string email, string password)
@@ -26,7 +24,7 @@ public class UserRepository : BaseRepository<User>, IUserRepository
             return null;
         }
 
-        var isPasswordValid = _passwordEncryption.VerifyPassword(password, user.Password);
+        var isPasswordValid = PasswordEncryption.VerifyPassword(password, user.Password);
         return isPasswordValid ? user : null;
     }
 
