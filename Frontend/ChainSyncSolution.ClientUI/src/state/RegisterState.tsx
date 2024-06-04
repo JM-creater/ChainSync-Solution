@@ -4,6 +4,7 @@ import { Form, FormProps } from "antd";
 import { CustomersRegister, SuppliersRegister } from "../models/Register";
 import { registerCstmr, registerSplr } from "../services/AuthService";
 import { showFailedToast, showSuccessToast } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterContext = createContext<RegisterContextType | null>(null);
 
@@ -11,6 +12,7 @@ export const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
     
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
+    const navigate = useNavigate();
 
     const HandleCustomerRegister: FormProps<CustomersRegister>['onFinish'] = async (values) => {
         setIsLoading(true);
@@ -19,7 +21,8 @@ export const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
             const response = await registerCstmr(values);
             if (response.status === 200) {
                 form.resetFields();
-                showSuccessToast("Register successful!");
+                showSuccessToast("Register Successful");
+                navigate('/');
             } else  {
                 showFailedToast(response.data.message || "Failed to Register.");
             }
@@ -53,7 +56,8 @@ export const RegisterProvider: React.FC<RegisterProps> = ({ children }) => {
             
             if (response.status === 200) {
                 form.resetFields();
-                showSuccessToast("Register successful!");
+                showSuccessToast("Register Successful.");
+                navigate('/');
             } else  {
                 showFailedToast(response.data.message || "Failed to Register.");
             }
