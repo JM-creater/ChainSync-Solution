@@ -1,0 +1,4 @@
+.breadcrumb-item-nav:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

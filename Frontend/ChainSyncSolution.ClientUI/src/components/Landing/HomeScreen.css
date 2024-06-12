@@ -1,0 +1,11 @@
+.carousel-container {
+    margin-bottom: 25px;
+    padding: 13px;
+}
+
+.card-container-suppliers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}

@@ -9,10 +9,10 @@ import { toastConfig } from './utils/toastConfig'
 import { LoginProvider } from './state/LoginState'
 import { MenuProvider } from './state/MenuItemState'
 import { RegisterProvider } from './state/RegisterState'
-import LandingScreen from './components/Landing/LandingScreen'
 import Dashboard_Supplier from './components/Dashboard/Dashboard_Supplier'
 import Dashboard_Admin from './components/Dashboard/Dashboard_Admin'
 import NotFoundScreen from './components/AuthComponents/common/NotFoundScreen'
+import MainScreen from './components/Landing/MainScreen'
 
 const App = () => {
 
@@ -35,7 +35,15 @@ const App = () => {
              </RegisterProvider>
             }
           />
-          <Route path='/home' element={ <LandingScreen/> } />
+          
+          <Route path='/home' element={ 
+            <ModalProvider>
+              <MenuProvider> 
+                <MainScreen/> 
+              </MenuProvider> 
+            </ModalProvider>
+            } 
+          />
 
           <Route path='/supplier-dashboard' element={ <Dashboard_Supplier/> } />
 
