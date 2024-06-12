@@ -1,0 +1,12 @@
+.notification-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ant-alert {
+    border-radius: 10px;
+    width: 2000px;
+}
+  

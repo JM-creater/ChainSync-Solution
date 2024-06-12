@@ -1,4 +1,5 @@
 ﻿using ChainSyncSolution.Domain.BaseDomain;
+using ChainSyncSolution.Domain.Common.Enum;
 
 namespace ChainSyncSolution.Domain.Entities;
 
@@ -11,7 +12,8 @@ public class Order : BaseEntity
        DateTimeOffset? dateDeleted,
        Guid userId,
        DateTime orderDate,
-       float totalAmount)
+       float totalAmount,
+       PaymentStatus paymentStatus)
      : base(id,
             dateCreated,
             dateUpdated,
@@ -20,6 +22,7 @@ public class Order : BaseEntity
         UserId = userId;
         OrderDate = orderDate;
         TotalAmount = totalAmount;
+        PaymentStatus = paymentStatus;
         OrderItems = new List<OrderItem>();
     }
 
@@ -27,6 +30,7 @@ public class Order : BaseEntity
     public virtual User User { get; private set; } = null!;
     public DateTime OrderDate { get; private set; }
     public float TotalAmount { get; private set; }
+    public PaymentStatus PaymentStatus { get; private set; }
 
     public List<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
 
@@ -49,6 +53,11 @@ public class Order : BaseEntity
     public void SetTotalAmount(float totalAmount)
     {
         TotalAmount = totalAmount;
+    }
+
+    public void SetPaymentStatus(PaymentStatus paymentStatus)
+    {
+        PaymentStatus = paymentStatus;
     }
 
     public void SetOrderItems(List<OrderItem> orderItems)

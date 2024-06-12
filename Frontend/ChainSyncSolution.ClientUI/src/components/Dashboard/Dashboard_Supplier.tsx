@@ -47,13 +47,13 @@ const Dashboard_Supplier: React.FC = () => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ position: 'fixed', height: '100vh' }}>
         <div className="demo-logo-vertical" />
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
-      <Layout>
+      <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
         <Header style={{ padding: 0, background: colorBgContainer }} />
-        <Content style={{ margin: '0 16px' }}>
+        <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>User</Breadcrumb.Item>
             <Breadcrumb.Item>Bill</Breadcrumb.Item>
@@ -61,7 +61,7 @@ const Dashboard_Supplier: React.FC = () => {
           <div
             style={{
               padding: 24,
-              minHeight: 360,
+              textAlign: 'center',
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
