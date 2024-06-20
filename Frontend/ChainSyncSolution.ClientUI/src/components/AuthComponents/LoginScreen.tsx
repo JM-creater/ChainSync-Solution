@@ -20,12 +20,14 @@ import { CustomerRegister, SupplierRegister } from './RegisterScreen';
 const { Title } = Typography;
 
 const LoginScreen: React.FC = () => {
+    
     const {
         HandleLogin,
         onFinishFailed,
         isLoading,
         form
     } = useLogin();
+
     const {
         HandleChangeItemMenu,
         HandleChangeCustomerMenu,
