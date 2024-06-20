@@ -2,7 +2,7 @@ import {
   ArrowRightOutlined,
   ShoppingCartOutlined
 } from '@ant-design/icons';
-import { Avatar, Card, Carousel, Modal } from 'antd'
+import { Avatar, Button, Card, Carousel, Modal } from 'antd'
 import React from 'react'
 import '../Landing/HomeScreen.css'
 import { useModal } from '../../hooks/useModal';
@@ -67,32 +67,40 @@ const HomeScreen: React.FC = () => {
       </div>
 
       <Modal
-        title="Modal 1000px width"
+        title="Exclusive Supplier Product Showcase"
         centered
         open={isModalOpen}
-        onOk={() => setIsModalOpen(true)}
-        onCancel={() => setIsModalOpen(false)}
+        footer={
+          <Button 
+            onClick={() => setIsModalOpen(false)} 
+            danger
+          >
+            Cancel
+          </Button>
+        }
         width={1000}
         maskClosable={false}
       >
-        <Card
-          style={{ width: 300 }}
-          cover={
-            <img
-              alt="example"
-              src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+        <div className="exclusive-products-container">
+          <Card
+            style={{ width: 300 }}
+            cover={
+              <img
+                alt="example"
+                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+              />
+            }
+            actions={[
+              <ShoppingCartOutlined key="edit" onClick={() => HandleNavClick(1)} />,
+            ]}
+          >
+            <Meta
+              avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
+              title="Card title"
+              description="This is the description"
             />
-          }
-          actions={[
-            <ShoppingCartOutlined key="edit" onClick={() => HandleNavClick(1)} />,
-          ]}
-        >
-          <Meta
-            avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8" />}
-            title="Card title"
-            description="This is the description"
-          />
-        </Card>
+          </Card>
+        </div>
       </Modal>
 
     </React.Fragment>
