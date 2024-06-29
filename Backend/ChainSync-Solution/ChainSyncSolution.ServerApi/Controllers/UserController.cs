@@ -1,5 +1,6 @@
 ﻿using Asp.Versioning;
 using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsers;
+using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsersById;
 using ChainSyncSolution.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +26,18 @@ public class UserController : ControllerBase
     public async Task<ActionResult<User>> GetUsers()
     {
         var response = await _mediator.Send(new GetUsersQueries());
+
+        return Ok(response);
+    }
+
+    [HttpGet("get-users-id/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> GetUsers(Guid id)
+    {
+        var response = await _mediator.Send(new GetUsersByIdQueries(id));
 
         return Ok(response);
     }
