@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import {
+  DashboardOutlined,
   DesktopOutlined,
   FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -28,15 +27,13 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  getItem('Dashboard', '1', <DashboardOutlined />),
+  getItem('Products', '2', <DesktopOutlined />),
+  getItem('Accounts', 'sub1', <UserOutlined />, [
+    getItem('Customer', '3'),
+    getItem('Supplier', '4'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
+  getItem('Report', '5', <FileOutlined />),
 ];
 
 const AdminMainScreen: React.FC = () => {
@@ -70,7 +67,7 @@ const AdminMainScreen: React.FC = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          ChainSync Solution ©{new Date().getFullYear()} Created by Martin Garado
         </Footer>
       </Layout>
     </Layout>

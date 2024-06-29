@@ -6,6 +6,7 @@ namespace ChainSyncSolution.Application.Interfaces.Persistence;
 public interface IUserRepository : IBaseRepository<User>
 {
     Task<List<User>> GetUsersAsync();
+    Task<User?> GetUsersByIdAsync(Guid id);
     Task<User?> CheckPasswordLoginAsync(string email, string password);
     Task<User?> CheckEmailLoginAsync(string email);
     Task<User?> GetUserByPhoneNumberAsync(string phoneNumber);

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {
-  DesktopOutlined,
+  DashboardOutlined,
   FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
+  GroupOutlined,
+  ImportOutlined,
+  ShoppingOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
@@ -28,15 +28,15 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Dashboard', '1', <PieChartOutlined />),
-  getItem('Products', '2', <DesktopOutlined />),
-  getItem('Orders', 'sub1', <UserOutlined />, [
+  getItem('Dashboard', '1', <DashboardOutlined />),
+  getItem('Products', '2', <ShoppingOutlined />),
+  getItem('Orders', 'sub1', <GroupOutlined />, [
     getItem('Pending', '3'),
     getItem('Approved', '4'),
     getItem('Preparing', '5'),
     getItem('Completed', '6'),
   ]),
-  getItem('Inventory', 'sub2', <TeamOutlined />),
+  getItem('Inventory', 'sub2', <ImportOutlined />),
   getItem('Reports', '9', <FileOutlined />),
 ];
 

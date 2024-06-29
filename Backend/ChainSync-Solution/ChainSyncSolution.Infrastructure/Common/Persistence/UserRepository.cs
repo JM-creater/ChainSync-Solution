@@ -16,11 +16,6 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     }
 
-    public async Task<List<User>> GetUsersAsync()
-        => await _chainSyncDbContext.Users
-                                    .AsNoTracking()
-                                    .ToListAsync();
-
     public async Task<User?> CheckPasswordLoginAsync(string email, string password)
     {
         var user = await _chainSyncDbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
@@ -64,5 +59,16 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     {
         await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
         return user;
+    }
+
+    public async Task<List<User>> GetUsersAsync()
+       => await _chainSyncDbContext.Users
+                                   .AsNoTracking()
+                                   .ToListAsync();
+
+    public async Task<User?> GetUsersByIdAsync(Guid id)
+    {
+       return await _chainSyncDbContext.Users.Where(u => u.Id == id)
+                                             .FirstOrDefaultAsync();
     }
 }
