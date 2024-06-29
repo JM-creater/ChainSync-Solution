@@ -16,6 +16,11 @@ public class UserRepository : BaseRepository<User>, IUserRepository
 
     }
 
+    public async Task<List<User>> GetUsersAsync()
+        => await _chainSyncDbContext.Users
+                                    .AsNoTracking()
+                                    .ToListAsync();
+
     public async Task<User?> CheckPasswordLoginAsync(string email, string password)
     {
         var user = await _chainSyncDbContext.Users.SingleOrDefaultAsync(u => u.Email == email);

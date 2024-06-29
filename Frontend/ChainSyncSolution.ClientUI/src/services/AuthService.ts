@@ -6,7 +6,7 @@ import { CustomersRegister } from "../models/Register";
 
 export const loginUser = async (userData: Login) => {
     try {
-        const response = await apiClient.post('/auth/login', userData, {
+        const response = await apiClient.post('/api/v1/auth/login', userData, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -23,7 +23,7 @@ export const loginUser = async (userData: Login) => {
 
 export const registerCstmr = async (customerData: CustomersRegister) => {
     try {
-        const response = await apiClient.post('/auth/register', customerData, {
+        const response = await apiClient.post('/api/v1/auth/register', customerData, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -41,7 +41,7 @@ export const registerCstmr = async (customerData: CustomersRegister) => {
 
 export const registerSplr = async (supplierData: FormData) => {
     try {
-        const response = await apiClient.post('/auth/register-supplier', supplierData, {
+        const response = await apiClient.post('/api/v1/auth/register-supplier', supplierData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },

@@ -17,9 +17,14 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectedMenuItem, setSelectedMenuItem] = useState<number>(0);
     const [selectedCustomerRegister, setSelectedCustomerRegister] = useState<number>(0);
     const [selectedSupplierRegister, setSelectedSupplierRegister] = useState<number>(1);
+    const [selectedSupplierDashboard, setSelectedSupplierDashboard] = useState<number>(0);
     const [randomNumber, setRandomNumber] = useState<number>(0);
     const [selectNavMenu, setSelectedNavMenu] = useState<number>(0);
     const navigate = useNavigate();
+
+    const HandleChangeDashboardSupplier = () => {
+      setSelectedSupplierDashboard(1);
+    }; 
   
     const HandleChangeItemMenu = () => {
       setSelectedMenuItem(1);
@@ -94,12 +99,14 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
       HandleSupplierRegisterCancel,
       HandleRenderComponent,
       HandleNavClick,
+      HandleChangeDashboardSupplier,
       selectedMenuItem,
       selectedCustomerRegister,
       selectedSupplierRegister,
       randomNumber,
       menuItems,
-      selectNavMenu
+      selectNavMenu,
+      selectedSupplierDashboard
     };
   
     return (

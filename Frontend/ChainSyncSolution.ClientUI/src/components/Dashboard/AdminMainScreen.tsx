@@ -39,7 +39,7 @@ const items: MenuItem[] = [
   getItem('Files', '9', <FileOutlined />),
 ];
 
-const Dashboard_Admin: React.FC = () => {
+const AdminMainScreen: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -77,4 +77,4 @@ const Dashboard_Admin: React.FC = () => {
   );
 };
 
-export default Dashboard_Admin;
+export default AdminMainScreen;

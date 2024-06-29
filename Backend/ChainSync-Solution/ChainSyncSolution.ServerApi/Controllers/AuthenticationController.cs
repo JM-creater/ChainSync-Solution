@@ -1,4 +1,5 @@
-﻿using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
+﻿using Asp.Versioning;
+using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
 using ChainSyncSolution.Contracts.Common.Authentication;
@@ -8,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChainSyncSolution.ServerApi.Controllers;
 
-[Route("auth")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/auth")]
 [AllowAnonymous]
 public class AuthenticationController : ControllerBase
 {
@@ -20,6 +22,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("register")]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -33,6 +36,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("register-supplier")]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -46,6 +50,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("login")]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

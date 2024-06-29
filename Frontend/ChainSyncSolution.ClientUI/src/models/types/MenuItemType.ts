@@ -5,6 +5,7 @@ export interface MenuItemContextType {
     randomNumber: number;
     menuItems: MenuItem[];
     selectNavMenu: number;
+    selectedSupplierDashboard: number;
     HandleChangeItemMenu: () => void;
     HandleChangeCustomerMenu: () => void;
     HandleChangeSupplierMenu: () => void;
@@ -12,6 +13,7 @@ export interface MenuItemContextType {
     HandleSupplierRegisterCancel: () => void;
     HandleRenderComponent: () => JSX.Element | null;
     HandleNavClick: (item: number) => void;
+    HandleChangeDashboardSupplier: () => void;
 }
 
 export interface MenuItemProps {
