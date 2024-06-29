@@ -9,8 +9,8 @@ import { toastConfig } from './utils/toastConfig'
 import { LoginProvider } from './state/LoginState'
 import { MenuProvider } from './state/MenuItemState'
 import { RegisterProvider } from './state/RegisterState'
-import Dashboard_Supplier from './components/Dashboard/Dashboard_Supplier'
-import Dashboard_Admin from './components/Dashboard/Dashboard_Admin'
+import SupplierMainScreen from './components/Dashboard/SupplierMainScreen'
+import AdminMainScreen from './components/Dashboard/AdminMainScreen'
 import NotFoundScreen from './components/AuthComponents/common/NotFoundScreen'
 import MainScreen from './components/Landing/MainScreen'
 
@@ -45,9 +45,9 @@ const App = () => {
             } 
           />
 
-          <Route path='/supplier-dashboard' element={ <Dashboard_Supplier/> } />
+          <Route path='/supplier-dashboard' element={ <SupplierMainScreen/> } />
 
-          <Route path='/admin-dashboard' element={ <Dashboard_Admin/> } />
+          <Route path='/admin-dashboard' element={ <AdminMainScreen/> } />
 
           <Route path="*" element={<NotFoundScreen />} />
         </Routes>

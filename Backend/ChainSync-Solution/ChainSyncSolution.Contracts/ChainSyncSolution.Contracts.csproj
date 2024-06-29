@@ -14,4 +14,8 @@
     <ProjectReference Include="..\ChainSyncSolution.Domain\ChainSyncSolution.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Users\" />
+  </ItemGroup>
+
 </Project>

@@ -28,18 +28,19 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  getItem('Dashboard', '1', <PieChartOutlined />),
+  getItem('Products', '2', <DesktopOutlined />),
+  getItem('Orders', 'sub1', <UserOutlined />, [
+    getItem('Pending', '3'),
+    getItem('Approved', '4'),
+    getItem('Preparing', '5'),
+    getItem('Completed', '6'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-  getItem('Files', '9', <FileOutlined />),
+  getItem('Inventory', 'sub2', <TeamOutlined />),
+  getItem('Reports', '9', <FileOutlined />),
 ];
 
-const Dashboard_Supplier: React.FC = () => {
+const SupplierMainScreen: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -49,7 +50,7 @@ const Dashboard_Supplier: React.FC = () => {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ position: 'fixed', height: '100vh' }}>
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
+        <Menu theme="dark" mode="inline" items={items} />
       </Sider>
       <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
         <Header style={{ padding: 0, background: colorBgContainer }} />
@@ -70,11 +71,11 @@ const Dashboard_Supplier: React.FC = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
+          ChainSync Solution ©{new Date().getFullYear()} Created by Martin Garado
         </Footer>
       </Layout>
     </Layout>
   );
 };
 
-export default Dashboard_Supplier;
+export default SupplierMainScreen;

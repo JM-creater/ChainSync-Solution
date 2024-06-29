@@ -1,6 +1,9 @@
-﻿namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsers;
+﻿using ChainSyncSolution.Domain.Entities;
+using MediatR;
 
-public class GetUsersQueries
+namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsers;
+
+public class GetUsersQueries : IRequest<List<User>>
 {
 
 }

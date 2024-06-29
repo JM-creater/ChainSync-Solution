@@ -34,7 +34,7 @@ const MainScreen: React.FC = () => {
         <div className="demo-logo" />
         <Menu
           theme="dark"
-          mode="horizontal"
+          mode="horizontal" 
           items={menuItems}
           style={{ flex: 1, minWidth: 0 }}
         />
