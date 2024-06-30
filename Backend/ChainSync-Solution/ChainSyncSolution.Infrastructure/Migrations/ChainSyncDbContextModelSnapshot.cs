@@ -238,6 +238,9 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("PasswordResetToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(11)
@@ -245,6 +248,9 @@ namespace ChainSyncSolution.Infrastructure.Migrations
 
                     b.Property<string>("ProfileImage")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResetTokenExpires")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -260,12 +266,12 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cc1ec082-37e5-470e-b5d1-27e61b25156f"),
+                            Id = new Guid("80298c20-e096-4257-a232-449369805683"),
                             Address = "",
                             BizLicenseNumber = "",
                             CompanyName = "",
-                            DateCreated = new DateTimeOffset(new DateTime(2024, 6, 29, 7, 30, 44, 293, DateTimeKind.Unspecified).AddTicks(9911), new TimeSpan(0, 0, 0, 0, 0)),
-                            DateUpdated = new DateTimeOffset(new DateTime(2024, 6, 29, 7, 30, 44, 293, DateTimeKind.Unspecified).AddTicks(9917), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateCreated = new DateTimeOffset(new DateTime(2024, 6, 30, 9, 0, 13, 430, DateTimeKind.Unspecified).AddTicks(538), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateUpdated = new DateTimeOffset(new DateTime(2024, 6, 30, 9, 0, 13, 430, DateTimeKind.Unspecified).AddTicks(542), new TimeSpan(0, 0, 0, 0, 0)),
                             Document = "",
                             Email = "garado@gmail.com",
                             FirstName = "Joseph Martin",

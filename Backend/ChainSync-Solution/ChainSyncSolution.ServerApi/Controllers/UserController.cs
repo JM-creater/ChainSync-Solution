@@ -1,6 +1,10 @@
 ﻿using Asp.Versioning;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.DeleteUsers;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
+using ChainSyncSolution.Application.Features.UsersFeatures.Commands.ValidateCustomer;
+using ChainSyncSolution.Application.Features.UsersFeatures.Commands.ValidateSupplier;
+using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetCustomers;
+using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetSuppliers;
 using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsers;
 using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetUsersById;
 using ChainSyncSolution.Domain.Entities;
@@ -40,6 +44,58 @@ public class UserController : ControllerBase
     public async Task<ActionResult<User>> GetUsers(Guid id)
     {
         var response = await _mediator.Send(new GetUsersByIdQueries(id));
+
+        return Ok(response);
+    }
+
+    [HttpGet("get-customers")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> GetCustomers()
+    {
+        var response = await _mediator.Send(new GetCustomersCommand());
+
+        return Ok(response);
+    }
+
+    [HttpGet("get-suppliers")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> GetSuppliers()
+    {
+        var response = await _mediator.Send(new GetSuppliersCommand());
+
+        return Ok(response);
+    }
+
+    [HttpPut("validate-customer/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> CustomerValidation(
+       Guid id,
+       CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new ValidateCustomerCommand(id), cancellationToken);
+
+        return Ok(response);
+    }
+
+    [HttpPut("validate-supplier/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> SupplierValidation(
+       Guid id,
+       CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new ValidateSupplierCommand(id), cancellationToken);
 
         return Ok(response);
     }

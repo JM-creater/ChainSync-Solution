@@ -1,9 +1,11 @@
 ﻿using ChainSyncSolution.Application.Common.Security;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Domain.Entities;
+using ChainSyncSolution.Domain.Common.Enum;
 using ChainSyncSolution.Infrastructure.Common.Abstraction;
 using ChainSyncSolution.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using ChainSyncSolution.Application.Common.Exceptions;
 
 namespace ChainSyncSolution.Infrastructure.Common.Persistence;
 
@@ -87,5 +89,49 @@ public class UserRepository : BaseRepository<User>, IUserRepository
                                             .FirstOrDefaultAsync();
         _chainSyncDbContext.Users.Remove(user);
         return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<List<User>> GetSuppliersAsync()
+    {
+        return await _chainSyncDbContext.Users.Where(u => u.Role == UserRole.Supplier)
+                                              .ToListAsync();
+    }
+
+    public async Task<List<User>> GetCustomersAsync()
+    {
+        return await _chainSyncDbContext.Users.Where(u => u.Role == UserRole.Customer)
+                                              .ToListAsync();
+    }
+
+    public async Task<User> UpdateCustomerValidationAsync(Guid id)
+    {
+        var user = await _chainSyncDbContext.Users.Where(u => u.Id == id && 
+                                                              u.Role == UserRole.Customer)
+                                                  .FirstOrDefaultAsync();
+
+        if (user is null) 
+        {
+            throw new CheckCustomerValidationException(id);
+        }
+
+        _chainSyncDbContext.Users.Update(user);
+
+        return user;
+    }
+
+    public async Task<User> UpdateSupplierValidationAsync(Guid id)
+    {
+        var user = await _chainSyncDbContext.Users.Where(u => u.Id == id &&
+                                                              u.Role == UserRole.Supplier)
+                                                  .FirstOrDefaultAsync();
+
+        if (user is null)
+        {
+            throw new CheckSupplierValidationException(id);
+        }
+
+        _chainSyncDbContext.Users.Update(user);
+
+        return user;
     }
 }

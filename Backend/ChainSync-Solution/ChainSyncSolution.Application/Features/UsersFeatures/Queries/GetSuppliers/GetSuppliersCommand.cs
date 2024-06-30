@@ -1,5 +1,6 @@
-﻿namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetSuppliers;
+﻿using ChainSyncSolution.Domain.Entities;
+using MediatR;
 
-public class GetSuppliersCommand
-{
-}
+namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetSuppliers;
+
+public sealed record GetSuppliersCommand() : IRequest<List<User>>;
