@@ -2,6 +2,7 @@
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
+using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 
@@ -139,6 +140,59 @@ public class ExceptionConfiguration : IExceptionConfiguration
         if (user is null)
         {
             throw new CheckEmailLoginException(queries.Email);
+        }
+    }
+
+    public async Task CustomUpdateCustomerProfile(UpdateCustomerProfileCommand command)
+    {
+        if (string.IsNullOrWhiteSpace(command.FirstName))
+        {
+            throw new FirstNameEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.LastName))
+        {
+            throw new LastNameEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.Email))
+        {
+            throw new EmailEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.PhoneNumber))
+        {
+            throw new PhoneNumberEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.Gender))
+        {
+            throw new GenderEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.Password))
+        {
+            throw new PasswordEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.Address))
+        {
+            throw new AddressEmptyException();
+        }
+
+        if (string.IsNullOrWhiteSpace(command.CompanyName))
+        {
+            throw new CompanyNameEmptyException();
+        }
+
+        if (await _userRepository.GetUserByPhoneNumberAsync(command.PhoneNumber) != null)
+        {
+            throw new PhoneNumberExistsException(command.PhoneNumber);
+        }
+
+        if (await _userRepository.GetUserByEmailAsync(command.Email) != null)
+        {
+            throw new EmailExistsException(command.Email);
         }
     }
 }

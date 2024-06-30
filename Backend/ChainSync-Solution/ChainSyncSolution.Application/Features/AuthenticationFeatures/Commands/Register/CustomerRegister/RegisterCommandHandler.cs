@@ -43,8 +43,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, RegisterR
 
         var token = _jwtTokenGenerator.GenerateToken(user);
         var register = _mapper.Map<RegisterRequest>(user);
-       
-
+      
         register.Token = token;
         register.Role = UserRole.Customer;
 

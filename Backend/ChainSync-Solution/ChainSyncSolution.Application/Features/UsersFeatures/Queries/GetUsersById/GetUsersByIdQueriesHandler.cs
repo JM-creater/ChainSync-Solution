@@ -10,13 +10,17 @@ public class GetUsersByIdQueriesHandler : IRequestHandler<GetUsersByIdQueries, U
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public GetUsersByIdQueriesHandler(IUserRepository userRepository, IUnitOfWork unitOfWork)
+    public GetUsersByIdQueriesHandler(
+        IUserRepository userRepository,
+        IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<User?> Handle(GetUsersByIdQueries queries, CancellationToken cancellationToken)
+    public async Task<User?> Handle(
+        GetUsersByIdQueries queries,
+        CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetUsersByIdAsync(queries.Id);
 

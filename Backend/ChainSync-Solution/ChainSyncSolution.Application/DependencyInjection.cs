@@ -30,6 +30,8 @@ public static class DependencyInjection
 
         services.AddHealthChecks();
 
+        services.AddMemoryCache();
+
         return services;
     }
 
