@@ -37,7 +37,7 @@ public class LoginQueriesHandler : IRequestHandler<LoginQueries, LoginRequest>
 
         var user = await _userRepository.CheckPasswordLoginAsync(queries.Email, queries.Password);
 
-        if (user == null)
+        if (user is null)
         {
             throw new CheckPasswordLoginException(queries.Password);
         }

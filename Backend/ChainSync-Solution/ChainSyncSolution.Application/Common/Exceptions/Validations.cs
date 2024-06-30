@@ -126,3 +126,26 @@ public class SupplierIdEmptyException : BaseException
     }
 }
 #endregion
+
+#region Validate
+
+public class CheckCustomerValidationException : BaseException
+{
+    public CheckCustomerValidationException(Guid id)
+        : base($"The Id {id} you entered is not a customer.", StatusCodes.Status400BadRequest)
+    {
+
+    }
+}
+
+public class CheckSupplierValidationException : BaseException
+{
+    public CheckSupplierValidationException(Guid id)
+        : base($"The Id {id} you entered is not a supplier.", StatusCodes.Status400BadRequest)
+    {
+
+    }
+}
+
+
+#endregion

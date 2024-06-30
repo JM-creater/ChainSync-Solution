@@ -92,6 +92,10 @@ public class User : BaseEntity
 
     public UserRole Role { get; private set; }
 
+    public string? PasswordResetToken { get; private set; }
+
+    public DateTime? ResetTokenExpires { get; private set; }
+
     public List<Order> Orders { get; private set; } = new List<Order>();
     public List<Product> Products { get; private set; } = new List<Product>();
 
@@ -170,6 +174,16 @@ public class User : BaseEntity
     public void SetRole(UserRole role)
     {
         Role = role;
+    }
+
+    public void SetPasswordResetToken(string passwordResetToken)
+    {
+        PasswordResetToken = passwordResetToken; 
+    }
+
+    public void SetResetTokenExpires(DateTime resetTokenExpires)
+    {
+        ResetTokenExpires = resetTokenExpires;
     }
 
     public void SetOrders(List<Order> orders)

@@ -16,4 +16,8 @@ public interface IUserRepository : IBaseRepository<User>
     Task<User> LoginAsync(User user, CancellationToken cancellationToken);
     Task<int> UpdateCustomerProfile(Guid id, User user, CancellationToken cancellationToken);
     Task<int> DeleteUsersAsync(Guid id, CancellationToken cancellationToken);
+    Task<List<User>> GetSuppliersAsync();
+    Task<List<User>> GetCustomersAsync();
+    Task<User> UpdateCustomerValidationAsync(Guid id);
+    Task<User> UpdateSupplierValidationAsync(Guid id);
 }

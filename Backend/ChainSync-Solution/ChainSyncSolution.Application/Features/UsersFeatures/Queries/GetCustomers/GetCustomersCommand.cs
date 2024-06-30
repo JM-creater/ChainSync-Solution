@@ -1,5 +1,6 @@
-﻿namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetCustomers;
+﻿using ChainSyncSolution.Domain.Entities;
+using MediatR;
 
-public class GetCustomersCommand
-{
-}
+namespace ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetCustomers;
+
+public sealed record GetCustomersCommand() : IRequest<List<User>>;
