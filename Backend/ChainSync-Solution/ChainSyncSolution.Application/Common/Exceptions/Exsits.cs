@@ -28,3 +28,12 @@ public class BizLicenseNumberExistsException : BaseException
 
     }
 }
+
+public class CheckIdExistException : BaseException
+{
+    public CheckIdExistException(Guid id)
+        : base($"The id {id} you entered does not exists.", StatusCodes.Status400BadRequest)
+    {
+
+    }
+}

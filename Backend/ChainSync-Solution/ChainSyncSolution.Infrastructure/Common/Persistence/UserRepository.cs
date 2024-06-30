@@ -71,4 +71,21 @@ public class UserRepository : BaseRepository<User>, IUserRepository
        return await _chainSyncDbContext.Users.Where(u => u.Id == id)
                                              .FirstOrDefaultAsync();
     }
+
+    public async Task<int> UpdateCustomerProfile(Guid id, User user, CancellationToken cancellationToken)
+    {
+        var userExisting = await _chainSyncDbContext.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
+
+        _chainSyncDbContext.Users.Update(user);
+        return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task<int> DeleteUsersAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var user = await _chainSyncDbContext.Users
+                                            .Where(u => u.Id == id)
+                                            .FirstOrDefaultAsync();
+        _chainSyncDbContext.Users.Remove(user);
+        return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
+    }
 }

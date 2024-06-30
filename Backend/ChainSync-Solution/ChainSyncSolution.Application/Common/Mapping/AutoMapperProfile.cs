@@ -2,7 +2,9 @@
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
+using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 using ChainSyncSolution.Contracts.Common.Authentication;
+using ChainSyncSolution.Contracts.Common.Users;
 using ChainSyncSolution.Domain.Common.Enum;
 using ChainSyncSolution.Domain.Entities;
 
@@ -87,5 +89,10 @@ public class AutoMapperProfile : Profile
                 UserRole.Customer                  
             )); 
         CreateMap<User, LoginRequest>();
+
+        // Update Customer Profile
+        CreateMap<UpdateCustomerProfileCommand, User>()
+            .ForMember(dest => dest.Password, opt => opt.Ignore());
+        CreateMap<User, UpdateCustomerProfileRequest>();
     }
 }
