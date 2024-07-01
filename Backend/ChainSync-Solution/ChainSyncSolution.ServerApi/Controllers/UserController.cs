@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.DeleteUsers;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
+using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateSupplierProfile;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.ValidateCustomer;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.ValidateSupplier;
 using ChainSyncSolution.Application.Features.UsersFeatures.Queries.GetCustomers;
@@ -110,8 +111,21 @@ public class UserController : ControllerBase
         [FromForm] UpdateCustomerProfileCommand command,
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(command with { Id = id }, cancellationToken);
+        var response = await _mediator.Send(new UpdateCustomerProfileByIdCommand(id, command), cancellationToken);
+        return Ok(response);
+    }
 
+    [HttpPut("profile-supplier/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<User>> UpdateSupplierProfile(
+        [FromRoute] Guid id,
+        [FromForm] UpdateSupplierProfileCommand command,
+        CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new UpdateSupplierProfileByIdCommand(id, command), cancellationToken);
         return Ok(response);
     }
 

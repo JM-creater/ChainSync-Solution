@@ -94,8 +94,6 @@ public class AutoMapperProfile : Profile
         CreateMap<User, LoginRequest>();
 
         // Update Customer Profile
-        CreateMap<UpdateCustomerProfileCommand, User>()
-            .ForMember(dest => dest.Password, opt => opt.Ignore());
         CreateMap<User, UpdateCustomerProfileRequest>();
 
         // Forgot Password

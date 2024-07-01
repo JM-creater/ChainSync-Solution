@@ -23,9 +23,9 @@ public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand,
 
     public async Task<ResetPasswordRequest> Handle(ResetPasswordCommand command, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetPasswordToken(command.Token);
+        var user = await _userRepository.GetPasswordTokenAsync(command.Token);
 
-        if (user == null)
+        if (user == null || user.ResetTokenExpires < DateTime.Now)
         {
             throw new CheckTokenExistsException(command.Token);
         }
@@ -33,6 +33,7 @@ public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand,
         user.SetPassword(PasswordEncryption.HashPassword(command.NewPassword));
         user.SetPasswordResetToken(null);
         user.SetResetTokenExpires(null); 
+        user.SetDateUpdated(DateTime.Now);
 
         await _userRepository.UpdatePasswordAsync(user);
         await _unitOfWork.Save(cancellationToken);
