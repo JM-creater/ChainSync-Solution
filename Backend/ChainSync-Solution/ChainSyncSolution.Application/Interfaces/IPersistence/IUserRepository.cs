@@ -7,6 +7,7 @@ public interface IUserRepository : IBaseRepository<User>
 {
     Task<List<User>> GetUsersAsync();
     Task<User?> GetUsersByIdAsync(Guid id);
+    Task<User?> GetUsersByEmailAsync(string email);
     Task<User?> CheckPasswordLoginAsync(string email, string password);
     Task<User?> CheckEmailLoginAsync(string email);
     Task<User?> GetUserByPhoneNumberAsync(string phoneNumber);
@@ -20,4 +21,6 @@ public interface IUserRepository : IBaseRepository<User>
     Task<List<User>> GetCustomersAsync();
     Task<User> UpdateCustomerValidationAsync(Guid id);
     Task<User> UpdateSupplierValidationAsync(Guid id);
+    Task<User> UpdatePasswordAsync(User user);
+    Task<User?> GetPasswordToken(string token);
 }

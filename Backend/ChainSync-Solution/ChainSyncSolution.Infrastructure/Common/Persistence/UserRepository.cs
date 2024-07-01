@@ -74,6 +74,12 @@ public class UserRepository : BaseRepository<User>, IUserRepository
                                              .FirstOrDefaultAsync();
     }
 
+    public async Task<User?> GetUsersByEmailAsync(string email)
+    {
+        return await _chainSyncDbContext.Users.Where(u => u.Email == email)
+                                              .FirstOrDefaultAsync();
+    }
+
     public async Task<int> UpdateCustomerProfile(Guid id, User user, CancellationToken cancellationToken)
     {
         var userExisting = await _chainSyncDbContext.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
@@ -131,6 +137,26 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         }
 
         _chainSyncDbContext.Users.Update(user);
+
+        return user;
+    }
+
+    public async Task<User> UpdatePasswordAsync(User user)
+    {
+        _chainSyncDbContext.Users.Update(user);
+        await _chainSyncDbContext.SaveChangesAsync();
+        return user;
+    }
+
+    public async Task<User?> GetPasswordToken(string token)
+    {
+        var user = await _chainSyncDbContext.Users.Where(u => u.PasswordResetToken == token)
+                                                  .FirstOrDefaultAsync();
+
+        if (user is null)
+        {
+            throw new CheckTokenExistsException(token);
+        }
 
         return user;
     }

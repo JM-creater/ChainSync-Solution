@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using ChainSyncSolution.Application.Common.Security;
+using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ForgotPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
+using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ResetPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 using ChainSyncSolution.Contracts.Common.Authentication;
@@ -94,5 +97,12 @@ public class AutoMapperProfile : Profile
         CreateMap<UpdateCustomerProfileCommand, User>()
             .ForMember(dest => dest.Password, opt => opt.Ignore());
         CreateMap<User, UpdateCustomerProfileRequest>();
+
+        // Forgot Password
+        CreateMap<ForgotPasswordCommand, ForgotPasswordRequest>();
+
+        // Reset Password
+        CreateMap<ResetPasswordCommand, User>();
+        CreateMap<User, ResetPasswordRequest>();
     }
 }

@@ -41,7 +41,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<User>> GetUsers(Guid id)
+    public async Task<ActionResult<User>> GetUsers([FromRoute] Guid id)
     {
         var response = await _mediator.Send(new GetUsersByIdQueries(id));
 
@@ -78,7 +78,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<User>> CustomerValidation(
-       Guid id,
+       [FromRoute] Guid id,
        CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new ValidateCustomerCommand(id), cancellationToken);
@@ -92,7 +92,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<User>> SupplierValidation(
-       Guid id,
+       [FromRoute] Guid id,
        CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new ValidateSupplierCommand(id), cancellationToken);
@@ -106,7 +106,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<User>> UpdateCustomerProfile(
-        Guid id,
+        [FromRoute] Guid id,
         [FromForm] UpdateCustomerProfileCommand command,
         CancellationToken cancellationToken)
     {
@@ -121,7 +121,7 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<User>> DeleteUsers(
-        Guid id,
+        [FromRoute] Guid id,
         CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new DeleteUsersCommand(id), cancellationToken);
