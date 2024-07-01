@@ -31,7 +31,6 @@
     <Folder Include="Features\NotificationFeatures\Queries\" />
     <Folder Include="Features\OrderFeatures\Commands\" />
     <Folder Include="Features\OrderFeatures\Queries\" />
-    <Folder Include="Features\ProductFeatures\Commands\" />
     <Folder Include="Features\ProductFeatures\Queries\" />
   </ItemGroup>
 

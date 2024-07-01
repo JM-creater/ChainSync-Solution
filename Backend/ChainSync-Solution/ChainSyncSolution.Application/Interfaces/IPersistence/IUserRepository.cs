@@ -15,12 +15,12 @@ public interface IUserRepository : IBaseRepository<User>
     Task<User?> GetSupplierIdAsync(string id);
     Task<User> RegisterAsync(User user, CancellationToken cancellationToken);
     Task<User> LoginAsync(User user, CancellationToken cancellationToken);
-    Task<int> UpdateCustomerProfile(Guid id, User user, CancellationToken cancellationToken);
+    Task<int> UpdateProfileAsync(User user, CancellationToken cancellationToken);
     Task<int> DeleteUsersAsync(Guid id, CancellationToken cancellationToken);
     Task<List<User>> GetSuppliersAsync();
     Task<List<User>> GetCustomersAsync();
     Task<User> UpdateCustomerValidationAsync(Guid id);
     Task<User> UpdateSupplierValidationAsync(Guid id);
     Task<User> UpdatePasswordAsync(User user);
-    Task<User?> GetPasswordToken(string token);
+    Task<User?> GetPasswordTokenAsync(string token);
 }

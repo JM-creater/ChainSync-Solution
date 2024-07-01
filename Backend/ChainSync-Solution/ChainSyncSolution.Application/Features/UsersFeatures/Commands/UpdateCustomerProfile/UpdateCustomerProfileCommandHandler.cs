@@ -9,7 +9,7 @@ using MediatR;
 
 namespace ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 
-public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustomerProfileCommand, UpdateCustomerProfileRequest>
+public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustomerProfileByIdCommand, UpdateCustomerProfileRequest>
 {
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -28,10 +28,12 @@ public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustome
     }
 
     public async Task<UpdateCustomerProfileRequest> Handle(
-        UpdateCustomerProfileCommand command,
+        UpdateCustomerProfileByIdCommand command,
         CancellationToken cancellationToken)
     {
-        await _exceptionConfiguration.CustomUpdateCustomerProfile(command);
+        var updateCommand = command.UpdateCommand;
+
+        //await _exceptionConfiguration.CustomUpdateCustomerProfile(updateCommand);
 
         var user = await _userRepository.GetUsersByIdAsync(command.Id);
 
@@ -40,14 +42,44 @@ public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustome
             throw new CheckIdExistException(command.Id);
         }
 
-        var updatedUser = _mapper.Map(command, user);
+        if (updateCommand.FirstName != null)
+        {
+            user.SetFirstName(updateCommand.FirstName);
+        }
+        if (updateCommand.LastName != null)
+        {
+            user.SetLastName(updateCommand.LastName);
+        }
+        if (updateCommand.Email != null)
+        {
+            user.SetEmail(updateCommand.Email);
+        }
+        if (updateCommand.PhoneNumber != null)
+        {
+            user.SetPhoneNumber(updateCommand.PhoneNumber);
+        }
+        if (updateCommand.Password != null)
+        {
+            user.SetPassword(PasswordEncryption.HashPassword(updateCommand.Password));
+        }
+        if (updateCommand.Gender != null)
+        {
+            user.SetGender(updateCommand.Gender);
+        }
+        if (updateCommand.CompanyName != null)
+        {
+            user.SetCompanyName(updateCommand.CompanyName);
+        }
+        if (updateCommand.Address != null)
+        {
+            user.SetAddress(updateCommand.Address);
+        }
 
-        updatedUser.SetPassword(PasswordEncryption.HashPassword(command.Password));
-        updatedUser.SetDateUpdated(DateTimeOffset.Now);
+        user.SetDateUpdated(DateTimeOffset.Now);
 
-        await _userRepository.UpdateCustomerProfile(command.Id, updatedUser, cancellationToken);
+        await _userRepository.UpdateProfileAsync(user, cancellationToken);
         await _unitOfWork.Save(cancellationToken);
 
-        return _mapper.Map<UpdateCustomerProfileRequest>(updatedUser);
+        return _mapper.Map<UpdateCustomerProfileRequest>(user);
     }
 }

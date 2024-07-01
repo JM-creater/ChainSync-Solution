@@ -80,10 +80,8 @@ public class UserRepository : BaseRepository<User>, IUserRepository
                                               .FirstOrDefaultAsync();
     }
 
-    public async Task<int> UpdateCustomerProfile(Guid id, User user, CancellationToken cancellationToken)
+    public async Task<int> UpdateProfileAsync(User user, CancellationToken cancellationToken)
     {
-        var userExisting = await _chainSyncDbContext.Users.Where(u => u.Id == id).FirstOrDefaultAsync();
-
         _chainSyncDbContext.Users.Update(user);
         return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
     }
@@ -148,7 +146,7 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         return user;
     }
 
-    public async Task<User?> GetPasswordToken(string token)
+    public async Task<User?> GetPasswordTokenAsync(string token)
     {
         var user = await _chainSyncDbContext.Users.Where(u => u.PasswordResetToken == token)
                                                   .FirstOrDefaultAsync();
