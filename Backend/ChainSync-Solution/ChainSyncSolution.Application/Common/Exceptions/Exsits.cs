@@ -37,3 +37,13 @@ public class CheckIdExistException : BaseException
 
     }
 }
+
+public class CheckTokenExistsException : BaseException
+{
+    public CheckTokenExistsException(string token)
+        : base($"The token {token} does not exists.", StatusCodes.Status400BadRequest)
+    {
+
+    }
+}
+

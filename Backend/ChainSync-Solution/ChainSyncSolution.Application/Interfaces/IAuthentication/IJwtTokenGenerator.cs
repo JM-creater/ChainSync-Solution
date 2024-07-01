@@ -7,4 +7,5 @@ public interface IJwtTokenGenerator
     string GenerateToken(User user);
     string GenerateSupplierToken(User user);    
     string GenerateLoginToken(User user);
+    string GeneratePasswordToken(User user);
 }

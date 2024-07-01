@@ -1,9 +1,11 @@
 ﻿using ChainSyncSolution.Application.Interfaces.Authentication;
 using ChainSyncSolution.Application.Interfaces.ErrorControl;
+using ChainSyncSolution.Application.Interfaces.IEmail;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Application.Interfaces.Providers;
 using ChainSyncSolution.Infrastructure.Common.Authentication;
+using ChainSyncSolution.Infrastructure.Common.Email;
 using ChainSyncSolution.Infrastructure.Common.ErrorControl;
 using ChainSyncSolution.Infrastructure.Common.Persistence;
 using ChainSyncSolution.Infrastructure.Common.Providers;
@@ -37,6 +39,8 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IExceptionConfiguration, ExceptionConfiguration>();
+
+        services.AddScoped<IEmailContentProvider, EmailContentProvider>();
 
         return services;
     }

@@ -27,10 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AuthenticationFeatures\ForgotPassword\" />
-    <Folder Include="Features\AuthenticationFeatures\ResetPassword\" />
-    <Folder Include="Features\NotificationFeatures\" />
-    <Folder Include="Features\OrderFeatures\" />
+    <Folder Include="Features\NotificationFeatures\Commands\" />
+    <Folder Include="Features\NotificationFeatures\Queries\" />
+    <Folder Include="Features\OrderFeatures\Commands\" />
+    <Folder Include="Features\OrderFeatures\Queries\" />
     <Folder Include="Features\ProductFeatures\Commands\" />
     <Folder Include="Features\ProductFeatures\Queries\" />
   </ItemGroup>

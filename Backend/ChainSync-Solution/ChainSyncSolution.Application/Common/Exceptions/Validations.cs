@@ -146,6 +146,4 @@ public class CheckSupplierValidationException : BaseException
 
     }
 }
-
-
 #endregion

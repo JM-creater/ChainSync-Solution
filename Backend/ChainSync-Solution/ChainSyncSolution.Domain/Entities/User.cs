@@ -176,12 +176,12 @@ public class User : BaseEntity
         Role = role;
     }
 
-    public void SetPasswordResetToken(string passwordResetToken)
+    public void SetPasswordResetToken(string? passwordResetToken)
     {
         PasswordResetToken = passwordResetToken; 
     }
 
-    public void SetResetTokenExpires(DateTime resetTokenExpires)
+    public void SetResetTokenExpires(DateTime? resetTokenExpires)
     {
         ResetTokenExpires = resetTokenExpires;
     }
