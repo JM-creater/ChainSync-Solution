@@ -12,3 +12,4 @@ public sealed record CreateProductsCommand(
      float Price,
      IFormFile ProductImage,
      int QuantityOnHand) : IRequest<CreateProductsRequest>;
+

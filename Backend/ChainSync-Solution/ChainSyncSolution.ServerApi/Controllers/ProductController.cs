@@ -2,6 +2,8 @@
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.ActivateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.DeactivateProducts;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.DeleteProducts;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.UpdateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Queries.GetProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Queries.GetProductsBySupplierId;
 using ChainSyncSolution.Contracts.Common.Products;
@@ -80,6 +82,33 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<Product>> DeactivateProducts(Guid id)
     {
         var response = await _mediator.Send(new DeactivateProductsCommand(id));
+
+        return Ok(response);
+    }
+
+    [HttpPut("update-products/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Product>> UpdateProducts(
+        [FromRoute] Guid id,
+        [FromForm] UpdateProductsCommand command,
+        CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new UpdateProductsByIdCommand(id, command));
+
+        return Ok(response);
+    }
+
+    [HttpDelete("delete-products/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Product>> DeleteProducts(Guid id)
+    {
+        var response = await _mediator.Send(new DeleteProductsCommand(id));
 
         return Ok(response);
     }
