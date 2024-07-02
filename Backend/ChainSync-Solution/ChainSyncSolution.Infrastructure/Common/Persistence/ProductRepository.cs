@@ -1,4 +1,5 @@
-﻿using ChainSyncSolution.Application.Interfaces.Persistence;
+﻿using ChainSyncSolution.Application.Common.Exceptions;
+using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Domain.Entities;
 using ChainSyncSolution.Infrastructure.Common.Abstraction;
 using ChainSyncSolution.Infrastructure.Context;
@@ -28,12 +29,36 @@ public class ProductRepository : BaseRepository<Product>, IProductRespository
                                         .ToListAsync();
     }
 
+    public async Task<Product> GetProductIdAsync(Guid id)
+    {
+        return await _chainSyncDbContext.Products
+                                        .Where(p => p.Id == id)
+                                        .FirstOrDefaultAsync();
+    }
+
     public async Task<List<Product>> GetProductsBySupplierIdAsync(Guid supplierId)
     {
         return await _chainSyncDbContext.Products
                                         .Where(p => p.SupplierId == supplierId)
                                         .AsNoTracking()
                                         .ToListAsync();
+    }
+
+    public async Task<Product> UpdateProductAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var product = await _chainSyncDbContext.Products
+                                               .Where(p => p.Id == id)
+                                               .FirstOrDefaultAsync();
+
+        if (product is null)
+        {
+            throw new CheckIdExistException(id);
+        }
+
+         _chainSyncDbContext.Products.Update(product);
+        await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
+
+        return product;
     }
 
 }

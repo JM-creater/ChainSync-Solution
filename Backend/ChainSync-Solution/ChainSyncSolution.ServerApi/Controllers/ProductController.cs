@@ -1,5 +1,7 @@
 ﻿using Asp.Versioning;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.ActivateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.DeactivateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Queries.GetProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Queries.GetProductsBySupplierId;
 using ChainSyncSolution.Contracts.Common.Products;
@@ -54,6 +56,30 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<Product>> GetProducts(Guid id)
     {
         var response = await _mediator.Send(new GetProductsBySupplierIdQueries(id));
+
+        return Ok(response);
+    }
+
+    [HttpPut("activate-products/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Product>> ActivateProducts(Guid id)
+    {
+        var response = await _mediator.Send(new ActivateProductsCommand(id));
+
+        return Ok(response);
+    }
+
+    [HttpPut("deactivate-products/{id}")]
+    [MapToApiVersion("1.0")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Product>> DeactivateProducts(Guid id)
+    {
+        var response = await _mediator.Send(new DeactivateProductsCommand(id));
 
         return Ok(response);
     }

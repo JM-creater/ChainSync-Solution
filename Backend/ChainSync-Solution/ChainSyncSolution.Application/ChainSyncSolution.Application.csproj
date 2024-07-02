@@ -33,6 +33,8 @@
     <Folder Include="Features\NotificationFeatures\Queries\" />
     <Folder Include="Features\OrderFeatures\Commands\" />
     <Folder Include="Features\OrderFeatures\Queries\" />
+    <Folder Include="Features\ProductFeatures\Commands\DeleteProducts\" />
+    <Folder Include="Features\ProductFeatures\Commands\UpdateProducts\" />
   </ItemGroup>
 
 </Project>
