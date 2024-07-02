@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using ChainSyncSolution.Application.Common.Security;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ForgotPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ResetPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
-using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
 using ChainSyncSolution.Contracts.Common.Authentication;
+using ChainSyncSolution.Contracts.Common.Products;
 using ChainSyncSolution.Contracts.Common.Users;
 using ChainSyncSolution.Domain.Common.Enum;
 using ChainSyncSolution.Domain.Entities;
@@ -39,7 +39,9 @@ public class AutoMapperProfile : Profile
                 string.Empty,                  
                 true,                         
                 false,                          
-                UserRole.Customer                   
+                UserRole.Customer,
+                string.Empty,
+                default
              ));
         CreateMap<User, RegisterRequest>();
 
@@ -64,7 +66,9 @@ public class AutoMapperProfile : Profile
                 string.Empty,                   
                 true,                          
                 false,                         
-                UserRole.Supplier                
+                UserRole.Supplier,
+                string.Empty,
+                default
            ));
         CreateMap<User, SupplierRequest>();
 
@@ -89,7 +93,9 @@ public class AutoMapperProfile : Profile
                 string.Empty,               
                 true,                           
                 false,                    
-                UserRole.Customer                  
+                UserRole.Customer,
+                string.Empty,
+                default
             )); 
         CreateMap<User, LoginRequest>();
 
@@ -102,5 +108,24 @@ public class AutoMapperProfile : Profile
         // Reset Password
         CreateMap<ResetPasswordCommand, User>();
         CreateMap<User, ResetPasswordRequest>();
+
+        // Create Product
+        CreateMap<CreateProductsCommand, Product>()
+            .ForMember(dest => dest.ProductImage, opt => opt.Ignore())
+            .ConstructUsing(src => new Product(
+                Guid.NewGuid(),
+                DateTimeOffset.Now,
+                DateTimeOffset.Now,
+                null,
+                src.ProductName,
+                src.Description,
+                src.SupplierId,
+                src.PhoneNumber,
+                src.Price,
+                string.Empty,
+                src.QuantityOnHand,
+                false
+                ));
+        CreateMap<Product, CreateProductsRequest>();
     }
 }

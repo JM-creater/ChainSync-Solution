@@ -25,4 +25,9 @@ public class AssetImagePath
     {
         return Path.Combine(_assetImageOptions.PathImages, _assetImageOptions.Document);
     }
+
+    public string GetProductImagePath()
+    {
+        return Path.Combine(_assetImageOptions.PathImages, _assetImageOptions.ProductImage);
+    }
 }

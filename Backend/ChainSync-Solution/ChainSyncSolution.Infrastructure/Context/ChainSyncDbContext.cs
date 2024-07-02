@@ -50,7 +50,9 @@ public class ChainSyncDbContext : DbContext
                  document: string.Empty,
                  isActive: true,
                  isValidated: true,
-                 role: UserRole.Admin
+                 role: UserRole.Admin,
+                 passwordResetToken: string.Empty,
+                 resetTokenExpires: default
              )
         );
     }

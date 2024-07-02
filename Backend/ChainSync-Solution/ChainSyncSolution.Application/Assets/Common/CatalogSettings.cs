@@ -11,3 +11,9 @@ public class DocumentsSettings
     public const string MainFolderDocument = "PathImages";
     public const string SubFolderDocument = "Document";
 }
+
+public class ProductsImageSettings
+{
+    public const string MainFolderDocument = "PathImages";
+    public const string SubFolderProductImage = "ProductImage";
+}

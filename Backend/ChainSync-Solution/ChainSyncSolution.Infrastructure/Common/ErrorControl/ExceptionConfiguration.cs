@@ -2,6 +2,7 @@
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
 using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.Persistence;
@@ -143,19 +144,19 @@ public class ExceptionConfiguration : IExceptionConfiguration
         }
     }
 
-    public async Task CustomUpdateCustomerProfile(UpdateCustomerProfileCommand command)
+    public async Task CustomCreateProduct(CreateProductsCommand command)
     {
-        if (string.IsNullOrWhiteSpace(command.FirstName))
+        if (string.IsNullOrWhiteSpace(command.ProductName))
         {
             throw new FirstNameEmptyException();
         }
 
-        if (string.IsNullOrWhiteSpace(command.LastName))
+        if (string.IsNullOrWhiteSpace(command.Description))
         {
             throw new LastNameEmptyException();
         }
 
-        if (string.IsNullOrWhiteSpace(command.Email))
+        if (command.SupplierId == Guid.Empty)
         {
             throw new EmailEmptyException();
         }
@@ -165,34 +166,24 @@ public class ExceptionConfiguration : IExceptionConfiguration
             throw new PhoneNumberEmptyException();
         }
 
-        if (string.IsNullOrWhiteSpace(command.Gender))
+        if (command.Price == 0)
         {
             throw new GenderEmptyException();
         }
 
-        if (string.IsNullOrWhiteSpace(command.Password))
+        if (command.ProductImage == null)
         {
             throw new PasswordEmptyException();
         }
 
-        if (string.IsNullOrWhiteSpace(command.Address))
+        if (command.QuantityOnHand == 0)
         {
             throw new AddressEmptyException();
-        }
-
-        if (string.IsNullOrWhiteSpace(command.CompanyName))
-        {
-            throw new CompanyNameEmptyException();
         }
 
         if (await _userRepository.GetUserByPhoneNumberAsync(command.PhoneNumber) != null)
         {
             throw new PhoneNumberExistsException(command.PhoneNumber);
-        }
-
-        if (await _userRepository.GetUserByEmailAsync(command.Email) != null)
-        {
-            throw new EmailExistsException(command.Email);
         }
     }
 }

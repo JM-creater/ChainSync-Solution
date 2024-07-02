@@ -64,10 +64,13 @@ public class UserRepository : BaseRepository<User>, IUserRepository
     }
 
     public async Task<List<User>> GetUsersAsync()
-       => await _chainSyncDbContext.Users
-                                   .AsNoTracking()
-                                   .ToListAsync();
-
+    {
+        return await _chainSyncDbContext.Users
+                                        .AsNoTracking()
+                                        .OrderByDescending(u => u.DateCreated)
+                                        .ToListAsync();
+    }
+    
     public async Task<User?> GetUsersByIdAsync(Guid id)
     {
        return await _chainSyncDbContext.Users.Where(u => u.Id == id)
@@ -91,20 +94,27 @@ public class UserRepository : BaseRepository<User>, IUserRepository
         var user = await _chainSyncDbContext.Users
                                             .Where(u => u.Id == id)
                                             .FirstOrDefaultAsync();
+
+
+
         _chainSyncDbContext.Users.Remove(user);
         return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<List<User>> GetSuppliersAsync()
     {
-        return await _chainSyncDbContext.Users.Where(u => u.Role == UserRole.Supplier)
-                                              .ToListAsync();
+        return await _chainSyncDbContext.Users
+                                        .Where(u => u.Role == UserRole.Supplier)
+                                        .AsNoTracking()
+                                        .ToListAsync();
     }
 
     public async Task<List<User>> GetCustomersAsync()
     {
-        return await _chainSyncDbContext.Users.Where(u => u.Role == UserRole.Customer)
-                                              .ToListAsync();
+        return await _chainSyncDbContext.Users
+                                        .Where(u => u.Role == UserRole.Customer)
+                                        .AsNoTracking()
+                                        .ToListAsync();
     }
 
     public async Task<User> UpdateCustomerValidationAsync(Guid id)

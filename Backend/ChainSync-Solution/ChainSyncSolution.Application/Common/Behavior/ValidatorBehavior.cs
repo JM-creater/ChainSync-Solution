@@ -70,6 +70,34 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
             {
                 throw new SupplierIdEmptyException();
             }
+            if (failure.PropertyName == "ProductName" && failure.ErrorCode == "400")
+            {
+                throw new ProductNameEmptyException();
+            }
+            if (failure.PropertyName == "Description" && failure.ErrorCode == "400")
+            {
+                throw new DescriptionEmptyException();
+            }
+            if (failure.PropertyName == "SupplierId" && failure.ErrorCode == "400")
+            {
+                throw new SupplierIDProductEmptyException();
+            }
+            if (failure.PropertyName == "PhoneNumber" && failure.ErrorCode == "400")
+            {
+                throw new PhoneNumberProductEmptyException();
+            }
+            if (failure.PropertyName == "Price" && failure.ErrorCode == "400")
+            {
+                throw new PriceEmptyException();
+            }
+            if (failure.PropertyName == "ProductImage" && failure.ErrorCode == "400")
+            {
+                throw new ProductImageEmptyException();
+            }
+            if (failure.PropertyName == "QuantityOnHand" && failure.ErrorCode == "400")
+            {
+                throw new QuantityOnHandEmptyException();
+            }
         }
 
         if (errors.Any())
