@@ -27,11 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\InventoryFeatures\Commands\" />
+    <Folder Include="Features\InventoryFeatures\Queries\" />
     <Folder Include="Features\NotificationFeatures\Commands\" />
     <Folder Include="Features\NotificationFeatures\Queries\" />
     <Folder Include="Features\OrderFeatures\Commands\" />
     <Folder Include="Features\OrderFeatures\Queries\" />
-    <Folder Include="Features\ProductFeatures\Queries\" />
   </ItemGroup>
 
 </Project>

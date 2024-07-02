@@ -1,5 +1,6 @@
 ﻿using ChainSyncSolution.Domain.BaseDomain;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace ChainSyncSolution.Domain.Entities;
 
@@ -10,14 +11,14 @@ public class Product : BaseEntity
        DateTimeOffset dateCreated,
        DateTimeOffset dateUpdated,
        DateTimeOffset? dateDeleted,
-       string name,
+       string productName,
        string description,
        Guid supplierId,
        string phoneNumber,
        float price,
-       string profileImage,
+       string productImage,
        int quantityOnHand,
-       int reorderLevel
+       bool isActive
        )
        : base(
            id,
@@ -25,19 +26,19 @@ public class Product : BaseEntity
            dateUpdated,
            dateDeleted)
     {
-        Name = name;
+        ProductName = productName;
         Description = description;
         SupplierId = supplierId;
         PhoneNumber = phoneNumber;
         Price = price;
-        ProfileImage = profileImage;
+        ProductImage = productImage;
         QuantityOnHand = quantityOnHand;
-        ReorderLevel = reorderLevel;
+        IsActive = isActive;
     }
 
     [Required]
     [StringLength(20)]
-    public string Name { get; private set; } = null!;
+    public string ProductName { get; private set; } = null!;
     [Required]
     [StringLength(100)]
     public string Description { get; private set; } = null!;
@@ -45,17 +46,17 @@ public class Product : BaseEntity
     public User Supplier { get; private set; } = null!;
     public string PhoneNumber { get; private set; } = null!;
     public float Price { get; private set; }
-    public string ProfileImage { get; private set; } = null!;
+    public string? ProductImage { get; private set; }
     public int QuantityOnHand { get; private set; }
-    public int ReorderLevel { get; private set; }
+    public bool IsActive { get; private set; }
 
     public Inventory Inventory { get; private set; } = null!;
     public List<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
 
     // Methods to set fields
-    public void SetName(string name)
+    public void SetName(string productName)
     {
-        Name = name;
+        ProductName = productName;
     }
 
     public void SetDescription(string description)
@@ -83,9 +84,9 @@ public class Product : BaseEntity
         Price = price;
     }
 
-    public void SetProfileImage(string profileImage)
+    public void SetProductImage(string productImage)
     {
-        ProfileImage = profileImage;
+        ProductImage = productImage;
     }
 
     public void SetQuantityOnHand(int quantityOnHand)
@@ -93,9 +94,9 @@ public class Product : BaseEntity
         QuantityOnHand = quantityOnHand;
     }
 
-    public void SetReorderLevel(int reorderLevel)
+    public void SetIsActive(bool isActive)
     {
-        ReorderLevel = reorderLevel;
+        IsActive = isActive;
     }
 
     public void SetInventory(Inventory inventory)

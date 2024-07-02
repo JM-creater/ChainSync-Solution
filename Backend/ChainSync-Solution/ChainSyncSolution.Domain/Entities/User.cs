@@ -25,7 +25,9 @@ public class User : BaseEntity
          string document,
          bool isActive,
          bool isValidated,
-         UserRole role)
+         UserRole role,
+         string? passwordResetToken,
+         DateTime? resetTokenExpires)
          : base(id,
                 dateCreated,
                 dateUpdated,
@@ -46,6 +48,8 @@ public class User : BaseEntity
         IsActive = isActive;
         IsValidated = isValidated;
         Role = role;
+        PasswordResetToken = passwordResetToken;    
+        ResetTokenExpires = resetTokenExpires;
     }
 
     [StringLength(20)]

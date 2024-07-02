@@ -79,4 +79,41 @@ public class AssetConfiguration
             DocumentsSettings.SubFolderDocument,
             fileName);
     }
+
+    public async Task<string> SaveProductImages(IFormFile imageFile)
+    {
+        if (imageFile == null || imageFile.Length == 0)
+        {
+            throw new InvalidImageProvideException(imageFile);
+        }
+
+        string mainFolder = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            ProductsImageSettings.MainFolderDocument);
+        string subFolder = Path.Combine(
+            mainFolder,
+            ProductsImageSettings.SubFolderProductImage);
+
+        if (!Directory.Exists(mainFolder))
+        {
+            Directory.CreateDirectory(mainFolder);
+        }
+        if (!Directory.Exists(subFolder))
+        {
+            Directory.CreateDirectory(subFolder);
+        }
+
+        var fileName = Path.GetFileName(imageFile.FileName);
+        var filePath = Path.Combine(subFolder, fileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await imageFile.CopyToAsync(stream);
+        }
+
+        return Path.Combine(
+            ProductsImageSettings.MainFolderDocument,
+            ProductsImageSettings.SubFolderProductImage,
+            fileName);
+    }
 }

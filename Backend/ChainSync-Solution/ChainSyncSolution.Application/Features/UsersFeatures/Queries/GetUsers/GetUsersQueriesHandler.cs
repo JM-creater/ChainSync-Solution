@@ -11,18 +11,15 @@ public class GetUsersQueriesHandler : IRequestHandler<GetUsersQueries, List<User
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
     private readonly IMemoryCache _memoryCache;
 
     public GetUsersQueriesHandler(
         IUnitOfWork unitOfWork,
         IUserRepository userRepository,
-        IMapper mapper,
         IMemoryCache memoryCache)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
-        _mapper = mapper;
         _memoryCache = memoryCache;
     }
 

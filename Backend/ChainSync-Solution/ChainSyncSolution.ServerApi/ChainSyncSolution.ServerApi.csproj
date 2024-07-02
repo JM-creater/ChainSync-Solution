@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="PathImages\Document\" />
+    <Folder Include="PathImages\ProductImage\" />
     <Folder Include="PathImages\ProfileImage\" />
   </ItemGroup>
 

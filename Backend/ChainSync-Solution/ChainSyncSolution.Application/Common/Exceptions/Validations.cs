@@ -147,3 +147,72 @@ public class CheckSupplierValidationException : BaseException
     }
 }
 #endregion
+
+#region Product
+
+public class ProductNameEmptyException : BaseException
+{
+    public ProductNameEmptyException()
+        : base("Product name cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class DescriptionEmptyException : BaseException
+{
+    public DescriptionEmptyException()
+        : base("Description cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class SupplierIdProductEmptyException : BaseException
+{
+    public SupplierIdProductEmptyException()
+        : base("Supplier Id cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class SupplierIDProductEmptyException : BaseException
+{
+    public SupplierIDProductEmptyException()
+        : base("Supplier Id cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class PhoneNumberProductEmptyException : BaseException
+{
+    public PhoneNumberProductEmptyException()
+        : base("Phone number cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class PriceEmptyException : BaseException
+{
+    public PriceEmptyException()
+        : base("Price cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class ProductImageEmptyException : BaseException
+{
+    public ProductImageEmptyException()
+        : base("Product Image cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class QuantityOnHandEmptyException : BaseException
+{
+    public QuantityOnHandEmptyException()
+        : base("Quantity cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+
+#endregion
