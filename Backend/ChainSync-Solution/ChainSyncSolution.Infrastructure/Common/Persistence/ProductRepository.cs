@@ -61,4 +61,10 @@ public class ProductRepository : BaseRepository<Product>, IProductRespository
         return product;
     }
 
+    public async Task<int> DeleteProductAsync(Product product, CancellationToken cancellationToken)
+    {
+        _chainSyncDbContext.Products.Remove(product);
+        return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
+    }
+
 }

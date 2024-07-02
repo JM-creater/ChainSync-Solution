@@ -9,15 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{8D9245EB-F8CF-4DEA-89E7-8ABF332599E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.Application", "ChainSyncSolution.Application\ChainSyncSolution.Application.csproj", "{08D35A3E-7425-4676-AE09-F89EDE1F32CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainSyncSolution.Application", "ChainSyncSolution.Application\ChainSyncSolution.Application.csproj", "{08D35A3E-7425-4676-AE09-F89EDE1F32CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.Domain", "ChainSyncSolution.Domain\ChainSyncSolution.Domain.csproj", "{55C7DC1B-C6B7-4891-A0BB-F2AA5780569E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainSyncSolution.Domain", "ChainSyncSolution.Domain\ChainSyncSolution.Domain.csproj", "{55C7DC1B-C6B7-4891-A0BB-F2AA5780569E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.Contracts", "ChainSyncSolution.Contracts\ChainSyncSolution.Contracts.csproj", "{6219C458-8E8B-45B4-95AE-B76C85EA7FBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainSyncSolution.Contracts", "ChainSyncSolution.Contracts\ChainSyncSolution.Contracts.csproj", "{6219C458-8E8B-45B4-95AE-B76C85EA7FBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.Infrastructure", "ChainSyncSolution.Infrastructure\ChainSyncSolution.Infrastructure.csproj", "{E6B94A29-7B3C-4207-A8A0-4060B9BEA348}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainSyncSolution.Infrastructure", "ChainSyncSolution.Infrastructure\ChainSyncSolution.Infrastructure.csproj", "{E6B94A29-7B3C-4207-A8A0-4060B9BEA348}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.ServerApi", "ChainSyncSolution.ServerApi\ChainSyncSolution.ServerApi.csproj", "{B93C522D-E22C-43D0-9B2C-87C0AE4239BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChainSyncSolution.ServerApi", "ChainSyncSolution.ServerApi\ChainSyncSolution.ServerApi.csproj", "{B93C522D-E22C-43D0-9B2C-87C0AE4239BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{B53C0215-D702-4490-82AE-E9976AD73FBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSyncSolution.UnitTesting", "ChainSyncSolution.UnitTesting\ChainSyncSolution.UnitTesting.csproj", "{094606DD-BD4D-4B16-B9B9-0276586DD359}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{B93C522D-E22C-43D0-9B2C-87C0AE4239BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B93C522D-E22C-43D0-9B2C-87C0AE4239BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B93C522D-E22C-43D0-9B2C-87C0AE4239BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{094606DD-BD4D-4B16-B9B9-0276586DD359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{094606DD-BD4D-4B16-B9B9-0276586DD359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{094606DD-BD4D-4B16-B9B9-0276586DD359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{094606DD-BD4D-4B16-B9B9-0276586DD359}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{6219C458-8E8B-45B4-95AE-B76C85EA7FBE} = {1ABD698D-059F-4CE1-9DB8-B17D63401CA3}
 		{E6B94A29-7B3C-4207-A8A0-4060B9BEA348} = {1ABD698D-059F-4CE1-9DB8-B17D63401CA3}
 		{B93C522D-E22C-43D0-9B2C-87C0AE4239BA} = {8D9245EB-F8CF-4DEA-89E7-8ABF332599E6}
+		{094606DD-BD4D-4B16-B9B9-0276586DD359} = {B53C0215-D702-4490-82AE-E9976AD73FBD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7B931BA-846C-4629-B462-0EB6549B5E98}

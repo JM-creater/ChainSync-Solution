@@ -5,6 +5,7 @@ using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Reg
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ResetPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
+using ChainSyncSolution.Application.Features.ProductFeatures.Commands.UpdateProducts;
 using ChainSyncSolution.Contracts.Common.Authentication;
 using ChainSyncSolution.Contracts.Common.Products;
 using ChainSyncSolution.Contracts.Common.Users;
@@ -127,5 +128,10 @@ public class AutoMapperProfile : Profile
                 false
                 ));
         CreateMap<Product, CreateProductsRequest>();
+
+        // Update Product
+        CreateMap<UpdateProductsCommand, Product>()
+            .ForMember(dest => dest.ProductImage, opt => opt.Ignore());
+        CreateMap<Product, UpdateProductsRequest>();
     }
 }

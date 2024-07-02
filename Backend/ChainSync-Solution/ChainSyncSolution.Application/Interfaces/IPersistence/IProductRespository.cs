@@ -9,4 +9,5 @@ public interface IProductRespository
     Task<List<Product>> GetProductsBySupplierIdAsync(Guid supplierId);
     Task<Product> GetProductIdAsync(Guid id);
     Task<Product> UpdateProductAsync(Guid id, CancellationToken cancellationToken);
+    Task<int> DeleteProductAsync(Product product, CancellationToken cancellationToken);
 }

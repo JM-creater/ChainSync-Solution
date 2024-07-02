@@ -14,17 +14,14 @@ public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustome
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    private readonly IExceptionConfiguration _exceptionConfiguration;
     public UpdateCustomerProfileCommandHandler(
         IUserRepository userRepository,
         IUnitOfWork unitOfWork,
-        IMapper mapper,
-        IExceptionConfiguration exceptionConfiguration)
+        IMapper mapper)
     {
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
-        _exceptionConfiguration = exceptionConfiguration;
     }
 
     public async Task<UpdateCustomerProfileRequest> Handle(
@@ -32,8 +29,6 @@ public class UpdateCustomerProfileCommandHandler : IRequestHandler<UpdateCustome
         CancellationToken cancellationToken)
     {
         var updateCommand = command.UpdateCommand;
-
-        //await _exceptionConfiguration.CustomUpdateCustomerProfile(updateCommand);
 
         var user = await _userRepository.GetUsersByIdAsync(command.Id);
 
