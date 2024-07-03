@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ChainSyncSolution.Infrastructure.Migrations
 {
     [DbContext(typeof(ChainSyncDbContext))]
-    [Migration("20240702043558_InitialCreate")]
+    [Migration("20240703165636_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -268,12 +268,12 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("29424fe6-8260-4e74-84db-5620a6fd284e"),
+                            Id = new Guid("49e52c76-36f8-44a5-aef3-e4ff54aeaf28"),
                             Address = "",
                             BizLicenseNumber = "",
                             CompanyName = "",
-                            DateCreated = new DateTimeOffset(new DateTime(2024, 7, 2, 4, 35, 57, 238, DateTimeKind.Unspecified).AddTicks(1369), new TimeSpan(0, 0, 0, 0, 0)),
-                            DateUpdated = new DateTimeOffset(new DateTime(2024, 7, 2, 4, 35, 57, 238, DateTimeKind.Unspecified).AddTicks(1372), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateCreated = new DateTimeOffset(new DateTime(2024, 7, 3, 16, 56, 32, 679, DateTimeKind.Unspecified).AddTicks(6148), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateUpdated = new DateTimeOffset(new DateTime(2024, 7, 3, 16, 56, 32, 679, DateTimeKind.Unspecified).AddTicks(6151), new TimeSpan(0, 0, 0, 0, 0)),
                             Document = "",
                             Email = "garado@gmail.com",
                             FirstName = "Joseph Martin",

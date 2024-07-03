@@ -4,9 +4,11 @@ using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Reg
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.ResetPassword;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
+using ChainSyncSolution.Application.Features.InventoryFeatures.Commands.CreateInventory;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.UpdateProducts;
 using ChainSyncSolution.Contracts.Common.Authentication;
+using ChainSyncSolution.Contracts.Common.Inventory;
 using ChainSyncSolution.Contracts.Common.Products;
 using ChainSyncSolution.Contracts.Common.Users;
 using ChainSyncSolution.Domain.Common.Enum;
@@ -133,5 +135,17 @@ public class AutoMapperProfile : Profile
         CreateMap<UpdateProductsCommand, Product>()
             .ForMember(dest => dest.ProductImage, opt => opt.Ignore());
         CreateMap<Product, UpdateProductsRequest>();
+
+        // Create Inventory
+        CreateMap<CreateInventoryCommand, Inventory>()
+            .ConstructUsing(src => new Inventory(
+                Guid.NewGuid(),
+                DateTimeOffset.Now,
+                DateTimeOffset.Now,
+                null,
+                src.ProductId,
+                src.Quantity,
+                src.LastRestockedDate));
+        CreateMap<Inventory, CreateInventoryRequest>();
     }
 }

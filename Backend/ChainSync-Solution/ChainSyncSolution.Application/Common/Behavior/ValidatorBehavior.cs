@@ -98,6 +98,18 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
             {
                 throw new QuantityOnHandEmptyException();
             }
+            if (failure.PropertyName == "ProductId" && failure.ErrorCode == "400")
+            {
+                throw new ProductIdEmptyException();
+            }
+            if (failure.PropertyName == "Quantity" && failure.ErrorCode == "400")
+            {
+                throw new QuantityEmptyException();
+            }
+            if (failure.PropertyName == "LastRestockedDate" && failure.ErrorCode == "400")
+            {
+                throw new LastRestockedDateEmptyException();
+            }
         }
 
         if (errors.Any())

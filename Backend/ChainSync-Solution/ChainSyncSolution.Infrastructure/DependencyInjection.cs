@@ -1,6 +1,7 @@
 ﻿using ChainSyncSolution.Application.Interfaces.Authentication;
 using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.IEmail;
+using ChainSyncSolution.Application.Interfaces.IPersistence;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Application.Interfaces.Providers;
@@ -36,6 +37,7 @@ public static class DependencyInjection
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IProductRespository, ProductRepository>();
+        services.AddScoped<IinventoryRepository, InventoryRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

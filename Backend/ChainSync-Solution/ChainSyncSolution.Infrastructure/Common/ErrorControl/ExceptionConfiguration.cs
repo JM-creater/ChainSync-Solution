@@ -2,8 +2,8 @@
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.CustomerRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Commands.Register.SupplierRegister;
 using ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
+using ChainSyncSolution.Application.Features.InventoryFeatures.Commands.CreateInventory;
 using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
-using ChainSyncSolution.Application.Features.UsersFeatures.Commands.UpdateCustomerProfile;
 using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 
@@ -12,10 +12,12 @@ namespace ChainSyncSolution.Infrastructure.Common.ErrorControl;
 public class ExceptionConfiguration : IExceptionConfiguration
 {
     private readonly IUserRepository _userRepository;
+    private readonly IProductRespository _producerRespository;
 
-    public ExceptionConfiguration(IUserRepository userRepository)
+    public ExceptionConfiguration(IUserRepository userRepository, IProductRespository producerRespository)
     {
         _userRepository = userRepository;
+        _producerRespository = producerRespository;
     }
 
     public async Task CustomerRegisterValidator(RegisterCommand command)
@@ -184,6 +186,26 @@ public class ExceptionConfiguration : IExceptionConfiguration
         if (await _userRepository.GetUserByPhoneNumberAsync(command.PhoneNumber) != null)
         {
             throw new PhoneNumberExistsException(command.PhoneNumber);
+        }
+    }
+
+    public async Task CustomCreateInventoryValidator(CreateInventoryCommand command)
+    {
+        var inventory = await _producerRespository.GetProductIdAsync(command.ProductId);
+
+        if (inventory.Id == Guid.Empty)
+        {
+            throw new ProductIdEmptyException();
+        }
+
+        if (command.Quantity == 0)
+        {
+            throw new QuantityEmptyException();
+        }
+
+        if (command.LastRestockedDate == default)
+        {
+            throw new LastRestockedDateEmptyException();
         }
     }
 }

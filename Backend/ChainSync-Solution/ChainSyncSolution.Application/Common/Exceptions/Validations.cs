@@ -216,3 +216,31 @@ public class QuantityOnHandEmptyException : BaseException
 
 
 #endregion
+
+#region Inventory
+
+public class ProductIdEmptyException : BaseException
+{
+    public ProductIdEmptyException()
+        : base("Product Id cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class QuantityEmptyException : BaseException
+{
+    public QuantityEmptyException()
+        : base("Quantity cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+public class LastRestockedDateEmptyException : BaseException
+{
+    public LastRestockedDateEmptyException()
+        : base("Last restocked date cannot be empty.", StatusCodes.Status400BadRequest)
+    {
+    }
+}
+
+#endregion
