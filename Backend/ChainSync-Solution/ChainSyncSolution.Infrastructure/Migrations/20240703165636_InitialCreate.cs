@@ -151,7 +151,7 @@ namespace ChainSyncSolution.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Address", "BizLicenseNumber", "CompanyName", "DateCreated", "DateDeleted", "DateUpdated", "Document", "Email", "FirstName", "Gender", "IsActive", "IsValidated", "LastName", "Password", "PasswordResetToken", "PhoneNumber", "ProfileImage", "ResetTokenExpires", "Role", "SupplierId" },
-                values: new object[] { new Guid("29424fe6-8260-4e74-84db-5620a6fd284e"), "", "", "", new DateTimeOffset(new DateTime(2024, 7, 2, 4, 35, 57, 238, DateTimeKind.Unspecified).AddTicks(1369), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2024, 7, 2, 4, 35, 57, 238, DateTimeKind.Unspecified).AddTicks(1372), new TimeSpan(0, 0, 0, 0, 0)), "", "garado@gmail.com", "Joseph Martin", "", true, true, "Garado", "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=", "", "12345678901", "PathImages\\Profile\\Joseph Martin T. Garado.png", null, 30, "" });
+                values: new object[] { new Guid("49e52c76-36f8-44a5-aef3-e4ff54aeaf28"), "", "", "", new DateTimeOffset(new DateTime(2024, 7, 3, 16, 56, 32, 679, DateTimeKind.Unspecified).AddTicks(6148), new TimeSpan(0, 0, 0, 0, 0)), null, new DateTimeOffset(new DateTime(2024, 7, 3, 16, 56, 32, 679, DateTimeKind.Unspecified).AddTicks(6151), new TimeSpan(0, 0, 0, 0, 0)), "", "garado@gmail.com", "Joseph Martin", "", true, true, "Garado", "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=", "", "12345678901", "PathImages\\Profile\\Joseph Martin T. Garado.png", null, 30, "" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventories_ProductId",

@@ -16,4 +16,4 @@ public sealed record UpdateProductsCommand(
 
 public sealed record UpdateProductsByIdCommand(
     Guid Id,
-    UpdateProductsCommand UpdateCommand) : IRequest<UpdateProductsRequest>;
+    UpdateProductsCommand UpdateCommand) : IRequest<UpdateProductsRequest>; 

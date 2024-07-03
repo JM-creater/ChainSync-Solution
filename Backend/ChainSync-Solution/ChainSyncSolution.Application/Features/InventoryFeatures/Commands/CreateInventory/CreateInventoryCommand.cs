@@ -1,6 +1,9 @@
-﻿namespace ChainSyncSolution.Application.Features.InventoryFeatures.Commands.CreateInventory;
+﻿using ChainSyncSolution.Contracts.Common.Inventory;
+using MediatR;
 
-public class CreateInventoryCommand
-{
+namespace ChainSyncSolution.Application.Features.InventoryFeatures.Commands.CreateInventory;
 
-}
+public sealed record CreateInventoryCommand(
+    Guid ProductId,
+    int Quantity,
+    DateTime LastRestockedDate) : IRequest<CreateInventoryRequest>;
