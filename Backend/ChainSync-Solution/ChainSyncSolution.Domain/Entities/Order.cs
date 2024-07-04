@@ -13,6 +13,7 @@ public class Order : BaseEntity
        Guid userId,
        DateTime orderDate,
        float totalAmount,
+       OrderStatus orderStatus,
        PaymentStatus paymentStatus)
      : base(id,
             dateCreated,
@@ -23,6 +24,7 @@ public class Order : BaseEntity
         OrderDate = orderDate;
         TotalAmount = totalAmount;
         PaymentStatus = paymentStatus;
+        OrderStatus = orderStatus;
         OrderItems = new List<OrderItem>();
     }
 
@@ -31,7 +33,7 @@ public class Order : BaseEntity
     public DateTime OrderDate { get; private set; }
     public float TotalAmount { get; private set; }
     public PaymentStatus PaymentStatus { get; private set; }
-
+    public OrderStatus OrderStatus { get; private set; }
     public List<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
 
     // Methods to set fields
@@ -58,6 +60,11 @@ public class Order : BaseEntity
     public void SetPaymentStatus(PaymentStatus paymentStatus)
     {
         PaymentStatus = paymentStatus;
+    }
+
+    public void SetOrderStatus(OrderStatus orderStatus)
+    {
+        OrderStatus = orderStatus;
     }
 
     public void SetOrderItems(List<OrderItem> orderItems)

@@ -27,8 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\InventoryFeatures\Queries\GetInventory\" />
-    <Folder Include="Features\InventoryFeatures\Queries\GetInventoryBySupplierId\" />
     <Folder Include="Features\NotificationFeatures\Commands\" />
     <Folder Include="Features\NotificationFeatures\Queries\" />
     <Folder Include="Features\OrderFeatures\Commands\" />
