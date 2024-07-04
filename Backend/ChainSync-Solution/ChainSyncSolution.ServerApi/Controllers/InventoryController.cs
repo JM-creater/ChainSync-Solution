@@ -1,6 +1,5 @@
 ﻿using Asp.Versioning;
 using ChainSyncSolution.Application.Features.InventoryFeatures.Commands.CreateInventory;
-using ChainSyncSolution.Application.Features.ProductFeatures.Commands.CreateProducts;
 using ChainSyncSolution.Contracts.Common.Inventory;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

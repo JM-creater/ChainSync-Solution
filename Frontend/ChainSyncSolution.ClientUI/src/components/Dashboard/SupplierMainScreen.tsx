@@ -32,12 +32,14 @@ const items: MenuItem[] = [
   getItem('Products', '2', <ShoppingOutlined />),
   getItem('Orders', 'sub1', <GroupOutlined />, [
     getItem('Pending', '3'),
-    getItem('Approved', '4'),
-    getItem('Preparing', '5'),
+    getItem('Processing', '4'),
+    getItem('Ready For Pick Up', '5'),
     getItem('Completed', '6'),
+    getItem('Canceled', '7'),
+    getItem('Denied', '8')
   ]),
   getItem('Inventory', 'sub2', <ImportOutlined />),
-  getItem('Reports', '9', <FileOutlined />),
+  getItem('Reports', '8', <FileOutlined />),
 ];
 
 const SupplierMainScreen: React.FC = () => {
