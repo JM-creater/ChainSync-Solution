@@ -10,6 +10,16 @@ import {
 } from "@ant-design/icons";
 import NotificationScreen from "../components/Notify/NotificationScreen";
 import HomeScreen from "../components/Landing/HomeScreen";
+import SupplierDashboardScreen from "../components/Dashboard/SupplierDashboardScreen";
+import ProductsScreen from "../components/Products/ProductsScreen";
+import PendingScreen from "../components/Place-Order/Order-Status/Pending-Order/PendingScreen";
+import ProcessingScreen from "../components/Place-Order/Order-Status/Processing-Order/ProcessingScreen";
+import ReadyForPickUpScreen from "../components/Place-Order/Order-Status/ReadyForPickUp-Order/ReadyForPickUpScreen";
+import CompletedScreen from "../components/Place-Order/Order-Status/Completed-Order/CompleteScreen";
+import CanceledScreen from "../components/Place-Order/Order-Status/Canceled-Order/CanceledScreen";
+import DeniedScreen from "../components/Place-Order/Order-Status/Denied-Order/DeniedScreen";
+import InventoryScreen from "../components/Inventories/InventoryScreen";
+import ReportsScreen from "../components/Reports/ReportsScreen";
 
 export const MenuContext = createContext<MenuItemContextType | null>(null);
 
@@ -20,7 +30,12 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectedSupplierDashboard, setSelectedSupplierDashboard] = useState<number>(0);
     const [randomNumber, setRandomNumber] = useState<number>(0);
     const [selectNavMenu, setSelectedNavMenu] = useState<number>(0);
+    const [selectedKeySupplier, setSelectedKeySupplier] = useState<string>('1');
     const navigate = useNavigate();
+
+    const HandleChangeKeySupplier = (e: { key: string }) => {
+      setSelectedKeySupplier(e.key);
+    };
 
     const HandleChangeDashboardSupplier = () => {
       setSelectedSupplierDashboard(1);
@@ -77,6 +92,33 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
         onClick: HandleLogout,
       },
     ];
+
+    const HandleRenderContentSupplier = () => {
+      switch (selectedKeySupplier) {
+        case '1':
+          return <SupplierDashboardScreen/>;
+        case '2':
+          return <ProductsScreen/>;
+        case '3':
+          return <PendingScreen/>;
+        case '4':
+          return <ProcessingScreen/>;
+        case '5':
+          return <ReadyForPickUpScreen/>;
+        case '6':
+          return <CompletedScreen/>;
+        case '7':
+          return <CanceledScreen/>;
+        case '8':
+          return <DeniedScreen/>;
+        case '9':
+          return <InventoryScreen/>;
+        case '10':
+          return <ReportsScreen/>;
+        default:
+          return null;
+      }
+    };
   
     const HandleRenderComponent = () => {
       switch (selectNavMenu) {
@@ -100,13 +142,16 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
       HandleRenderComponent,
       HandleNavClick,
       HandleChangeDashboardSupplier,
+      HandleChangeKeySupplier,
+      HandleRenderContentSupplier,
       selectedMenuItem,
       selectedCustomerRegister,
       selectedSupplierRegister,
       randomNumber,
       menuItems,
       selectNavMenu,
-      selectedSupplierDashboard
+      selectedSupplierDashboard,
+      selectedKeySupplier
     };
   
     return (
