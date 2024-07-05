@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { useMenuItem } from '../../hooks/useMenuItem';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -18,12 +19,14 @@ function getItem(
   key: React.Key,
   icon?: React.ReactNode,
   children?: MenuItem[],
+  onClick?: () => void
 ): MenuItem {
   return {
     key,
     icon,
     children,
     label,
+    onClick
   } as MenuItem;
 }
 
@@ -38,8 +41,8 @@ const items: MenuItem[] = [
     getItem('Canceled', '7'),
     getItem('Denied', '8')
   ]),
-  getItem('Inventory', 'sub2', <ImportOutlined />),
-  getItem('Reports', '8', <FileOutlined />),
+  getItem('Inventory', '9', <ImportOutlined />),
+  getItem('Reports', '10', <FileOutlined />),
 ];
 
 const SupplierMainScreen: React.FC = () => {
@@ -47,12 +50,30 @@ const SupplierMainScreen: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const { selectedKeySupplier, 
+          HandleChangeKeySupplier, 
+          HandleRenderContentSupplier 
+        } = useMenuItem();
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)} style={{ position: 'fixed', height: '100vh' }}>
+      <Sider 
+        collapsible 
+        collapsed={collapsed} 
+        onCollapse={(value) => setCollapsed(value)} 
+        style={{ 
+          position: 'fixed', 
+          height: '100vh' 
+        }}
+      >
         <div className="demo-logo-vertical" />
-        <Menu theme="dark" mode="inline" items={items} />
+        <Menu 
+          theme="dark" 
+          mode="inline" 
+          selectedKeys={[selectedKeySupplier]} 
+          items={items} 
+          onClick={HandleChangeKeySupplier}
+        />
       </Sider>
       <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
         <Header style={{ padding: 0, background: colorBgContainer }} />
@@ -69,7 +90,7 @@ const SupplierMainScreen: React.FC = () => {
               borderRadius: borderRadiusLG,
             }}
           >
-            Bill is a cat.
+            {HandleRenderContentSupplier()}
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>

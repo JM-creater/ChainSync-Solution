@@ -45,7 +45,11 @@ const App = () => {
             } 
           />
 
-          <Route path='/supplier-dashboard' element={ <SupplierMainScreen/> } />
+          <Route path='/supplier-dashboard' element={ 
+            <MenuProvider>
+              <SupplierMainScreen/> 
+            </MenuProvider>
+          } />
 
           <Route path='/admin-dashboard' element={ <AdminMainScreen/> } />
 
