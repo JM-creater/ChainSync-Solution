@@ -1,18 +1,16 @@
-import React from 'react';
 import { 
   FloatButton, 
   Space, 
   Table, 
-  Tag, 
   Button, 
   Col, 
   Drawer, 
   Form, 
   Input, 
   Row,
-  Upload
+  Upload,
+  Tag
 } from 'antd';
-import type { TableProps } from 'antd';
 import './ProductsScreen.css'
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { useDrawer } from '../../hooks/useDrawer';
@@ -20,102 +18,68 @@ import { useProduct } from '../../hooks/useProduct';
 import { CreateProduct } from '../../models/Product';
 import { IdentitySupplierProps } from '../../models/types/IdentityType';
 import { uploadProductProps } from '../../utils/uploadConfig';
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
-const columns: TableProps<DataType>['columns'] = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? 'geekblue' : 'green';
-          if (tag === 'loser') {
-            color = 'volcano';
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
+import React, { useEffect } from 'react';
 
 const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
 
   const { 
     drawerOpen, 
     showDrawer, 
-    closeDrawer 
+    closeDrawer
   } = useDrawer();
 
   const { 
     form, 
-    // isLoading, 
+    isLoading, 
+    products,
     onFinishCreateProduct, 
-    onFinishFailed 
+    onFinishFailed,
+    fetchProductBySupplierId
   } = useProduct();
+
+  useEffect(() => {
+    fetchProductBySupplierId(supplierId);
+  }, [supplierId, fetchProductBySupplierId]);
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'productName',
+      key: 'productName',
+    },
+    {
+      title: 'Price',
+      dataIndex: 'price',
+      key: 'price',
+    },
+    {
+      title: 'Quantity',
+      dataIndex: 'quantityOnHand',
+      key: 'quantityOnHand',
+    },
+    {
+      title: 'Tags',
+      key: 'isActive',
+      dataIndex: 'isActive',
+      render: (isActive: boolean) => (
+        <Tag color={isActive ? 'green' : 'volcano'}>
+          {isActive ? 'Active' : 'Inactive'}
+        </Tag>
+      ),
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: () => (
+        <Space size="middle">
+          <a>Edit</a>
+          <a>Delete</a>
+        </Space>
+      ),
+    },
+  ];
+
+
 
   return (
     <React.Fragment>
@@ -125,7 +89,7 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
         style={{ right: 24, height: 50, width: 50}}
         onClick={showDrawer}
       />
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={products} />
 
       <Drawer
         maskClosable={false}
@@ -141,7 +105,7 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
         extra={
           <Space>
             <Button onClick={closeDrawer}>Cancel</Button>
-            <Button onClick={() => form.submit()} type="primary">
+            <Button onClick={() => form.submit()} type="primary" loading={isLoading}>
               Submit
             </Button>
           </Space>

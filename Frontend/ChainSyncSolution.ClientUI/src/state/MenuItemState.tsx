@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { MenuItemContextType, MenuItemProps } from "../models/types/MenuItemType";
 import { useNavigate } from "react-router-dom";
 import OrderScreen from "../components/Place-Order/OrderScreen";
@@ -34,6 +34,26 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectedKeySupplier, setSelectedKeySupplier] = useState<string>('1');
     const navigate = useNavigate();
     const { supplierId } = useIdentity();
+
+    const updateDocumentTitle = (title: string) => {
+      document.title = title;
+    };
+
+    useEffect(() => {
+      const titles: { [key: string]: string } = {
+        '1': 'Dashboard - ChainSync',
+        '2': 'Products - ChainSync',
+        '3': 'Pending Orders - ChainSync',
+        '4': 'Processing Orders - ChainSync',
+        '5': 'Ready for Pick Up Orders - ChainSync',
+        '6': 'Completed Orders - ChainSync',
+        '7': 'Canceled Orders - ChainSync',
+        '8': 'Denied Orders - ChainSync',
+        '9': 'Inventory - ChainSync',
+        '10': 'Reports - ChainSync'
+      };
+      updateDocumentTitle(titles[selectedKeySupplier]);
+    }, [selectedKeySupplier]);
 
     const HandleChangeKeySupplier = (e: { key: string }) => {
       setSelectedKeySupplier(e.key);

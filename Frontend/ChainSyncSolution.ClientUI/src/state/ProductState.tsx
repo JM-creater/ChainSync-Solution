@@ -1,8 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import { ProductContextType, ProductProps } from "../models/types/ProductType";
 import { Form, FormProps } from "antd";
-import { CreateProduct } from "../models/Product";
-import { createProduct } from "../services/ProductService";
+import { CreateProduct, Product } from "../models/Product";
+import { createProduct, getProductsBySupplierId } from "../services/ProductService";
 import { showFailedToast, showSuccessToast } from "../utils";
 import { useDrawer } from "../hooks/useDrawer";
 
@@ -13,6 +13,7 @@ export const ProductProvider: React.FC<ProductProps> = ({ children }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { closeDrawer } = useDrawer();
     const [form] = Form.useForm(); 
+    const [products, setProducts] = useState<Product[]>([]);
 
     const onFinishCreateProduct: FormProps<CreateProduct>['onFinish'] = async (values) => {
         setIsLoading(true);
@@ -53,11 +54,22 @@ export const ProductProvider: React.FC<ProductProps> = ({ children }) => {
         console.log('Failed:', errorInfo);
     };
 
+    const fetchProductBySupplierId = useCallback(async (supplierId: string) => {
+        const response = await getProductsBySupplierId(supplierId);
+        if (response.status === 200) {
+          setProducts(response.data);
+        } else {
+          console.error(response.data.message);
+        }
+    }, []);
+
     const HandleValue = {
         form,
         isLoading,
+        products,
         onFinishCreateProduct,
-        onFinishFailed
+        onFinishFailed,
+        fetchProductBySupplierId
     };
 
     return (

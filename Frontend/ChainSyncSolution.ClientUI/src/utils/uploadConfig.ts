@@ -15,7 +15,6 @@ export const uploadProps: UploadProps = {
   },
 };
 
-
 export const uploadProductProps: UploadProps = {
     name: 'productImage',
     headers: {
