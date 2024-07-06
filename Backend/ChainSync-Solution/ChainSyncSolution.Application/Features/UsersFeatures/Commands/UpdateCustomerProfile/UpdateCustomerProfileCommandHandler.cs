@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ChainSyncSolution.Application.Common.Exceptions;
 using ChainSyncSolution.Application.Common.Security;
-using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Contracts.Common.Users;

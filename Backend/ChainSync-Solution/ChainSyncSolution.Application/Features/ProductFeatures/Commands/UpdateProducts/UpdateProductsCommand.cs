@@ -7,7 +7,6 @@ namespace ChainSyncSolution.Application.Features.ProductFeatures.Commands.Update
 public sealed record UpdateProductsCommand(
      string ProductName,
      string Description,
-     Guid SupplierId,
      string PhoneNumber,
      float Price,
      IFormFile ProductImage,
@@ -15,5 +14,5 @@ public sealed record UpdateProductsCommand(
 
 
 public sealed record UpdateProductsByIdCommand(
-    Guid Id,
+    string SupplierId,
     UpdateProductsCommand UpdateCommand) : IRequest<UpdateProductsRequest>; 
