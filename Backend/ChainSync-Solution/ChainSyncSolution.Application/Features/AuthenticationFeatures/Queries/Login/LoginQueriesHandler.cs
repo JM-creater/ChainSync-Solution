@@ -5,6 +5,7 @@ using ChainSyncSolution.Application.Interfaces.ErrorControl;
 using ChainSyncSolution.Application.Interfaces.IRepository;
 using ChainSyncSolution.Application.Interfaces.Persistence;
 using ChainSyncSolution.Contracts.Common.Authentication;
+using ChainSyncSolution.Domain.Common.Enum;
 using MediatR;
 
 namespace ChainSyncSolution.Application.Features.AuthenticationFeatures.Queries.Login;
@@ -47,6 +48,11 @@ public class LoginQueriesHandler : IRequestHandler<LoginQueries, LoginRequest>
 
         login.Token = token;
         login.Role = user.Role;
+
+        if (user.Role == UserRole.Supplier)
+        {
+            login.SupplierId = user.SupplierId;
+        }
 
         await _unitOfWork.Save(cancellationToken);
 

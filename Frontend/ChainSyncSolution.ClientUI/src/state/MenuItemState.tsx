@@ -20,6 +20,7 @@ import CanceledScreen from "../components/Place-Order/Order-Status/Canceled-Orde
 import DeniedScreen from "../components/Place-Order/Order-Status/Denied-Order/DeniedScreen";
 import InventoryScreen from "../components/Inventories/InventoryScreen";
 import ReportsScreen from "../components/Reports/ReportsScreen";
+import { useIdentity } from "../hooks/useIdentity";
 
 export const MenuContext = createContext<MenuItemContextType | null>(null);
 
@@ -32,6 +33,7 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectNavMenu, setSelectedNavMenu] = useState<number>(0);
     const [selectedKeySupplier, setSelectedKeySupplier] = useState<string>('1');
     const navigate = useNavigate();
+    const { supplierId } = useIdentity();
 
     const HandleChangeKeySupplier = (e: { key: string }) => {
       setSelectedKeySupplier(e.key);
@@ -98,7 +100,7 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
         case '1':
           return <SupplierDashboardScreen/>;
         case '2':
-          return <ProductsScreen/>;
+          return <ProductsScreen supplierId={supplierId} />;
         case '3':
           return <PendingScreen/>;
         case '4':

@@ -4,7 +4,6 @@ namespace ChainSyncSolution.Contracts.Common.Authentication;
 
 public sealed record SupplierRequest
 {
-    public string? SupplierId { get; set; }
     public string Email { get; set; } = null!;
     public string PhoneNumber { get; set; } = null!;
     public string Password { get; set; } = null!;

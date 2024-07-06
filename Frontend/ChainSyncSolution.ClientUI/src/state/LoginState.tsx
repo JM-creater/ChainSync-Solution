@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const LoginContext = createContext<LoginContextType | null>(null);
 
 export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
+
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [form] = Form.useForm();
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
                         navigate('/home');
                         break
                     case 20:
-                        navigate('/supplier-dashboard');
+                        navigate(`/supplier-dashboard?supplierId=${response.data.supplierId}`);
                         break
                     case 30:
                         navigate('/admin-dashboard');
@@ -36,7 +37,6 @@ export const LoginProvider: React.FC<LoginProps> = ({ children }) => {
             } else {
                 showFailedToast(response.data.message || "Failed to Login.");
             }
-           
         } catch (error) {
             console.log(error);
         } finally {

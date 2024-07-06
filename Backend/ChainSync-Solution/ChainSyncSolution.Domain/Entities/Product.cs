@@ -1,6 +1,5 @@
 ﻿using ChainSyncSolution.Domain.BaseDomain;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 
 namespace ChainSyncSolution.Domain.Entities;
 
@@ -13,7 +12,7 @@ public class Product : BaseEntity
        DateTimeOffset? dateDeleted,
        string productName,
        string description,
-       Guid supplierId,
+       string supplierId,
        string phoneNumber,
        float price,
        string productImage,
@@ -42,8 +41,7 @@ public class Product : BaseEntity
     [Required]
     [StringLength(100)]
     public string Description { get; private set; } = null!;
-    public Guid SupplierId { get; private set; }
-    public User Supplier { get; private set; } = null!;
+    public string SupplierId { get; private set; } = null!;
     public string PhoneNumber { get; private set; } = null!;
     public float Price { get; private set; }
     public string? ProductImage { get; private set; }
@@ -64,14 +62,9 @@ public class Product : BaseEntity
         Description = description;
     }
 
-    public void SetSupplierId(Guid supplierId)
+    public void SetSupplierId(string supplierId)
     {
         SupplierId = supplierId;
-    }
-
-    public void SetSupplier(User supplier)
-    {
-        Supplier = supplier;
     }
 
     public void SetPhoneNumber(string phoneNumber)

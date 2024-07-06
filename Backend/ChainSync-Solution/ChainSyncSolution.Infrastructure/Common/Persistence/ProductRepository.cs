@@ -36,7 +36,7 @@ public class ProductRepository : BaseRepository<Product>, IProductRespository
                                         .FirstOrDefaultAsync();
     }
 
-    public async Task<List<Product>> GetProductsBySupplierIdAsync(Guid supplierId)
+    public async Task<List<Product>> GetProductsBySupplierIdAsync(string supplierId)
     {
         return await _chainSyncDbContext.Products
                                         .Where(p => p.SupplierId == supplierId)

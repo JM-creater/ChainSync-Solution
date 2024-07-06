@@ -7,7 +7,7 @@ namespace ChainSyncSolution.Application.Features.ProductFeatures.Commands.Create
 public sealed record CreateProductsCommand(
      string ProductName,
      string Description,
-     Guid SupplierId,
+     string SupplierId,
      string PhoneNumber,
      float Price,
      IFormFile ProductImage,
