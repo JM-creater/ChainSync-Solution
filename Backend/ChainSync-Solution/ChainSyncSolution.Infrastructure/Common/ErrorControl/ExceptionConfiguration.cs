@@ -158,7 +158,7 @@ public class ExceptionConfiguration : IExceptionConfiguration
             throw new LastNameEmptyException();
         }
 
-        if (command.SupplierId == Guid.Empty)
+        if (string.IsNullOrWhiteSpace(command.SupplierId))
         {
             throw new EmailEmptyException();
         }

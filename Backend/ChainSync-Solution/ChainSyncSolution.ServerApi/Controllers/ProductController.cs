@@ -55,7 +55,7 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Product>> GetProducts(Guid id)
+    public async Task<ActionResult<Product>> GetProducts(string id)
     {
         var response = await _mediator.Send(new GetProductsBySupplierIdQueries(id));
 

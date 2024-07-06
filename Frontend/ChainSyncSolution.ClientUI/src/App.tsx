@@ -13,6 +13,9 @@ import SupplierMainScreen from './components/Dashboard/SupplierMainScreen'
 import AdminMainScreen from './components/Dashboard/AdminMainScreen'
 import NotFoundScreen from './components/AuthComponents/common/NotFoundScreen'
 import MainScreen from './components/Landing/MainScreen'
+import { DrawerProvider } from './state/DrawerState'
+import { ProductProvider } from './state/ProductState'
+import { IdentityProvider } from './state/IdentityState'
 
 const App = () => {
 
@@ -24,15 +27,17 @@ const App = () => {
           <Route
             index
             element={
-             <RegisterProvider>
-              <MenuProvider>
-                <LoginProvider>
-                  <ModalProvider>
-                    <LoginScreen />
-                  </ModalProvider>
-                </LoginProvider>
-              </MenuProvider>
-             </RegisterProvider>
+              <IdentityProvider>
+                <RegisterProvider>
+                  <MenuProvider>
+                    <LoginProvider>
+                      <ModalProvider>
+                        <LoginScreen />
+                      </ModalProvider>
+                    </LoginProvider>
+                  </MenuProvider>
+                </RegisterProvider>
+              </IdentityProvider>
             }
           />
           
@@ -46,9 +51,15 @@ const App = () => {
           />
 
           <Route path='/supplier-dashboard' element={ 
-            <MenuProvider>
-              <SupplierMainScreen/> 
-            </MenuProvider>
+            <IdentityProvider>
+              <DrawerProvider>
+               <ProductProvider>
+                <MenuProvider>
+                  <SupplierMainScreen/> 
+                </MenuProvider>
+              </ProductProvider>
+              </DrawerProvider>
+            </IdentityProvider>
           } />
 
           <Route path='/admin-dashboard' element={ <AdminMainScreen/> } />

@@ -4,7 +4,7 @@ public sealed record CreateProductsRequest
 {
     public string ProductName { get; private set; } = null!;
     public string Description { get; private set; } = null!;
-    public Guid SupplierId { get; private set; }
+    public string SupplierId { get; private set; } = null!;
     public string PhoneNumber { get; private set; } = null!;
     public float Price { get; private set; }
     public string? ProductImage { get; private set; }

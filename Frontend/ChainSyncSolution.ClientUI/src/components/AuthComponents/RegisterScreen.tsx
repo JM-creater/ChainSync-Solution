@@ -215,7 +215,7 @@ export const CustomerRegister: React.FC = () => {
 export const SupplierRegister: React.FC<SupplierRegisterProps> = ({ randomNumber }) => {
     const { HandleSupplierRegister, form, isLoading } = useRegister();
     const { HandleSupplierRegisterCancel } = useMenuItem();
-
+    
     return (
         <Form
             className='form-supplier-container'
