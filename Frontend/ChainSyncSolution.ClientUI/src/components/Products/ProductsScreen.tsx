@@ -89,6 +89,7 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
         style={{ right: 24, height: 50, width: 50}}
         onClick={showDrawer}
       />
+
       <Table columns={columns} dataSource={products} />
 
       <Drawer
@@ -105,7 +106,11 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
         extra={
           <Space>
             <Button onClick={closeDrawer}>Cancel</Button>
-            <Button onClick={() => form.submit()} type="primary" loading={isLoading}>
+            <Button 
+              onClick={() => form.submit()} 
+              type="primary" 
+              loading={isLoading}
+            >
               Submit
             </Button>
           </Space>

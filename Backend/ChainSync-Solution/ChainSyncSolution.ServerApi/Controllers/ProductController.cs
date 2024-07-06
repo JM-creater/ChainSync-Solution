@@ -92,11 +92,11 @@ public class ProductController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Product>> UpdateProducts(
-        [FromRoute] Guid id,
+        [FromRoute] string id,
         [FromForm] UpdateProductsCommand command,
         CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new UpdateProductsByIdCommand(id, command));
+        var response = await _mediator.Send(new UpdateProductsByIdCommand(id, command), cancellationToken);
 
         return Ok(response);
     }
