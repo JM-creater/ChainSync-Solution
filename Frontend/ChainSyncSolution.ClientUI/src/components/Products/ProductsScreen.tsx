@@ -99,8 +99,8 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
       key: 'action',
       render: (record: Product) => (
         <Space size="middle">
-            <a onClick={() => HandleEdit(record.id)}>Edit</a>
-            <a onClick={() => HandleDelete(record.id)}>Delete</a>
+          <a onClick={() => HandleEdit(record.id)}>Edit</a>
+          <a onClick={() => HandleDelete(record.id)}>Delete</a>
         </Space>
       ),
     },
