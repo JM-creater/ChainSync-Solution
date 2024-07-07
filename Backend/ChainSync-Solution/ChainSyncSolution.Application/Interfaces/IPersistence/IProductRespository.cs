@@ -11,4 +11,5 @@ public interface IProductRespository
     Task<Product?> GetUpdateBySupplierIdAsync(string supplierId);
     Task<Product> UpdateProductAsync(Guid id, CancellationToken cancellationToken);
     Task<int> DeleteProductAsync(Product product, CancellationToken cancellationToken);
+    IQueryable<Product> Query();
 }

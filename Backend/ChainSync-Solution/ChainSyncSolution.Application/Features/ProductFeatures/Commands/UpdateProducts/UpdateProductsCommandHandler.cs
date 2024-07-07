@@ -25,11 +25,11 @@ public class UpdateProductsCommandHandler : IRequestHandler<UpdateProductsByIdCo
     {
         var updateCommand = command.UpdateCommand;
 
-        var product = await _productRespository.GetUpdateBySupplierIdAsync(command.SupplierId);
+        var product = await _productRespository.GetProductIdAsync(command.Id);
 
         if (product == null)
         {
-            throw new CheckSupplierIdExistException(command.SupplierId);
+            throw new CheckSupplierIdExistException(command.Id);
         }
 
         if (updateCommand.ProductName != null)

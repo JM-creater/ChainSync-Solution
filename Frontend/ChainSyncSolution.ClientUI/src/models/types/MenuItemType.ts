@@ -14,6 +14,7 @@ export interface MenuItemContextType {
     HandleSupplierRegisterCancel: () => void;
     HandleRenderComponent: () => JSX.Element | null;
     HandleNavClick: (item: number) => void;
+    HandleSupplierNavClick: (item: string) => void;
     HandleChangeDashboardSupplier: () => void;
     HandleChangeKeySupplier: (e: { key: string }) => void; 
     HandleRenderContentSupplier: () => JSX.Element | null;

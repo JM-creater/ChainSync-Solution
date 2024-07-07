@@ -74,4 +74,9 @@ public class ProductRepository : BaseRepository<Product>, IProductRespository
         return await _chainSyncDbContext.SaveChangesAsync(cancellationToken);
     }
 
+    public IQueryable<Product> Query()
+    {
+        return _chainSyncDbContext.Products.AsQueryable();
+    }
+
 }

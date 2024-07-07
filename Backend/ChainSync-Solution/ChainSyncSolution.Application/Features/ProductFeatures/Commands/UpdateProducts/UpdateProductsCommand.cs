@@ -14,5 +14,5 @@ public sealed record UpdateProductsCommand(
 
 
 public sealed record UpdateProductsByIdCommand(
-    string SupplierId,
+    Guid Id,
     UpdateProductsCommand UpdateCommand) : IRequest<UpdateProductsRequest>; 
