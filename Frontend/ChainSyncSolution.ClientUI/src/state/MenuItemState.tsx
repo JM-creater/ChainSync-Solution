@@ -87,6 +87,10 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const HandleNavClick = (item: number) => {
       setSelectedNavMenu(item);
     };
+
+    const HandleSupplierNavClick = (item: string) => {
+      setSelectedKeySupplier(item);
+    };
   
     const HandleLogout = () => {
       navigate('/');
@@ -166,6 +170,7 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
       HandleChangeDashboardSupplier,
       HandleChangeKeySupplier,
       HandleRenderContentSupplier,
+      HandleSupplierNavClick,
       selectedMenuItem,
       selectedCustomerRegister,
       selectedSupplierRegister,

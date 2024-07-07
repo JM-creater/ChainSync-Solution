@@ -52,7 +52,8 @@ const SupplierMainScreen: React.FC = () => {
   } = theme.useToken();
   const { selectedKeySupplier, 
           HandleChangeKeySupplier, 
-          HandleRenderContentSupplier 
+          HandleRenderContentSupplier,
+          HandleSupplierNavClick
         } = useMenuItem();
 
   return (
@@ -78,10 +79,58 @@ const SupplierMainScreen: React.FC = () => {
       <Layout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumb 
+            style={{ margin: '16px 0' }}
+            separator="/"
+            items={[
+              {
+                onClick: () => HandleSupplierNavClick('1'),
+                title: (
+                  <React.Fragment>
+                    <DashboardOutlined />
+                    <span className="breadcrumb-item-nav">Dashboard</span>
+                  </React.Fragment>
+                ),
+              },
+              ...(selectedKeySupplier === '2' ? [{
+                onClick: () => HandleSupplierNavClick('2'),
+                title: <span className="breadcrumb-item-nav">Products</span>,
+              }] : []),
+              ...(selectedKeySupplier === '3' ? [{
+                onClick: () => HandleSupplierNavClick('3'),
+                title: <span className="breadcrumb-item-nav">Pending Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '4' ? [{
+                onClick: () => HandleSupplierNavClick('4'),
+                title: <span className="breadcrumb-item-nav">Processing Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '5' ? [{
+                onClick: () => HandleSupplierNavClick('5'),
+                title: <span className="breadcrumb-item-nav">Ready For Pick Up Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '6' ? [{
+                onClick: () => HandleSupplierNavClick('6'),
+                title: <span className="breadcrumb-item-nav">Completed Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '7' ? [{
+                onClick: () => HandleSupplierNavClick('7'),
+                title: <span className="breadcrumb-item-nav">Canceled Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '8' ? [{
+                onClick: () => HandleSupplierNavClick('8'),
+                title: <span className="breadcrumb-item-nav">Denied Orders</span>,
+              }] : []),
+              ...(selectedKeySupplier === '9' ? [{
+                onClick: () => HandleSupplierNavClick('9'),
+                title: <span className="breadcrumb-item-nav">Inventory</span>,
+              }] : []),
+              ...(selectedKeySupplier === '10' ? [{
+                onClick: () => HandleSupplierNavClick('10'),
+                title: <span className="breadcrumb-item-nav">Reports</span>,
+              }] : []),
+            ]}
+          />
+          
           <div
             style={{
               padding: 24,

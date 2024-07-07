@@ -7,6 +7,7 @@ export const DrawerContext = createContext<DrawerContexType | null>(null);
 export const DrawerProvider: React.FC<DrawerProps> = ({ children }) => {
 
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+    const [editDrawerOpen, setEditDrawerOpen] = useState<boolean>(false);
 
     const showDrawer = () => {
         setDrawerOpen(true);
@@ -16,10 +17,21 @@ export const DrawerProvider: React.FC<DrawerProps> = ({ children }) => {
         setDrawerOpen(false);
     };
 
+    const showEditDrawer = () => {
+        setEditDrawerOpen(true);
+    };
+
+    const closeEditDrawer = () => {
+        setEditDrawerOpen(false);
+    };
+
     const HandleValue = {
         drawerOpen,
+        editDrawerOpen,
         showDrawer,
-        closeDrawer
+        closeDrawer,
+        showEditDrawer,
+        closeEditDrawer
     };
 
     return (

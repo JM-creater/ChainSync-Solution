@@ -40,7 +40,7 @@ public class CheckIdExistException : BaseException
 
 public class  CheckSupplierIdExistException : BaseException
 {
-    public CheckSupplierIdExistException(string id)
+    public CheckSupplierIdExistException(Guid id)
         : base($"The id {id} you entered does not exists.", StatusCodes.Status400BadRequest)
     {
 

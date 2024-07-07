@@ -272,12 +272,12 @@ namespace ChainSyncSolution.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dfd3454c-9ccc-41bf-adc3-03a61fa7c975"),
+                            Id = new Guid("caed7890-ad7b-4c04-a8d2-24c3115df6aa"),
                             Address = "",
                             BizLicenseNumber = "",
                             CompanyName = "",
-                            DateCreated = new DateTimeOffset(new DateTime(2024, 7, 6, 2, 40, 57, 995, DateTimeKind.Unspecified).AddTicks(683), new TimeSpan(0, 0, 0, 0, 0)),
-                            DateUpdated = new DateTimeOffset(new DateTime(2024, 7, 6, 2, 40, 57, 995, DateTimeKind.Unspecified).AddTicks(687), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateCreated = new DateTimeOffset(new DateTime(2024, 7, 7, 6, 50, 39, 991, DateTimeKind.Unspecified).AddTicks(9867), new TimeSpan(0, 0, 0, 0, 0)),
+                            DateUpdated = new DateTimeOffset(new DateTime(2024, 7, 7, 6, 50, 39, 991, DateTimeKind.Unspecified).AddTicks(9872), new TimeSpan(0, 0, 0, 0, 0)),
                             Document = "",
                             Email = "garado@gmail.com",
                             FirstName = "Joseph Martin",
