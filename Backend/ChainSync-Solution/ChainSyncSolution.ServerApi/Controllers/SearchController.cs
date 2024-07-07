@@ -1,5 +1,4 @@
 ﻿using Asp.Versioning;
-using ChainSyncSolution.Application.Features.ProductFeatures.Queries.GetProducts;
 using ChainSyncSolution.Application.Features.Search.SearchProducts;
 using ChainSyncSolution.Domain.Entities;
 using MediatR;
