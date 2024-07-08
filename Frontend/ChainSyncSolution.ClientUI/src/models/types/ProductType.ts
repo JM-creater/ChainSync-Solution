@@ -14,6 +14,7 @@ export interface ProductContextType {
     fetchProductById: (productId: string) => Promise<void>;
     deleteProduct: (productId: string) => Promise<void>;
     searchProductByName: (productName: string) => Promise<void>;
+    handleDeactivateActivateProduct: (productId: string, currentStatus: boolean) => Promise<void>;
 }
 
 export interface ProductProps {

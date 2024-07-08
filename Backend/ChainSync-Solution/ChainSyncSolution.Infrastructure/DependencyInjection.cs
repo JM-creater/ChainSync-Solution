@@ -82,7 +82,11 @@ public static class DependencyInjection
     {
         var defaultConnectionString = configuration.GetConnectionString(ConnectionSettings.ConnectionStrings);
 
-        services.AddDbContext<ChainSyncDbContext>(option => option.UseSqlServer(defaultConnectionString));
+        services.AddDbContext<ChainSyncDbContext>(option =>
+        {
+            option.UseSqlServer(defaultConnectionString);
+            option.AddInterceptors(new InterceptorSettings());
+        });
 
         return services;
     }
