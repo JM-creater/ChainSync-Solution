@@ -87,3 +87,29 @@ export const searchProduct = async (productName: string) => {
         };
     }
 }
+
+export const activateProduct = async (productId: string) => {
+    try {
+        const response = await apiClient.put(`/api/v1/Product/activate-products/${productId}`);
+        return response;
+    } catch (error) {
+        const axiosError = error as AxiosError<ErrorResponseData>;
+        return {
+            status: axiosError.response?.status || 500,
+            data: axiosError.response?.data || { message: 'Error! Something went wrong.' },
+        };
+    }
+}
+
+export const deactivateProduct = async (productId: string) => {
+    try {
+        const response = await apiClient.put(`/api/v1/Product/deactivate-products/${productId}`);
+        return response;
+    } catch (error) {
+        const axiosError = error as AxiosError<ErrorResponseData>;
+        return {
+            status: axiosError.response?.status || 500,
+            data: axiosError.response?.data || { message: 'Error! Something went wrong.' },
+        };
+    }
+}

@@ -42,11 +42,13 @@ const App = () => {
           />
           
           <Route path='/home' element={ 
-            <ModalProvider>
-              <MenuProvider> 
-                <MainScreen/> 
-              </MenuProvider> 
-            </ModalProvider>
+            <IdentityProvider>
+               <ModalProvider>
+                <MenuProvider> 
+                  <MainScreen/> 
+                </MenuProvider> 
+              </ModalProvider>
+            </IdentityProvider>
             } 
           />
 

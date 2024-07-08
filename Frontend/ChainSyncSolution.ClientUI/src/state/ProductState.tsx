@@ -2,7 +2,7 @@ import { createContext, useCallback, useState } from "react";
 import { ProductContextType, ProductProps } from "../models/types/ProductType";
 import { Form, FormProps } from "antd";
 import { CreateProduct, Product, UpdateProduct } from "../models/Product";
-import { createProduct, deleteProductById, getProductsById, getProductsBySupplierId, searchProduct, updateProductsByProductId } from "../services/ProductService";
+import { activateProduct, createProduct, deactivateProduct, deleteProductById, getProductsById, getProductsBySupplierId, searchProduct, updateProductsByProductId } from "../services/ProductService";
 import { showFailedToast, showSuccessToast } from "../utils";
 import { useDrawer } from "../hooks/useDrawer";
 
@@ -15,6 +15,7 @@ export const ProductProvider: React.FC<ProductProps> = ({ children }) => {
     const [form] = Form.useForm(); 
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedProducts, setSelectedProducts] = useState<Product | null>(null);
+    // const [isActive, setIsActive] = useState<boolean>(true);
 
     const onFinishCreateProduct: FormProps<CreateProduct>['onFinish'] = async (values) => {
         setIsLoading(true);
@@ -141,6 +142,29 @@ export const ProductProvider: React.FC<ProductProps> = ({ children }) => {
         }
     }, []);
 
+    const handleDeactivateActivateProduct = async (productId: string, currentStatus: boolean) => {
+        try {
+            const response = currentStatus ? await deactivateProduct(productId) : await activateProduct(productId);
+            if (response.status === 200) {
+                setProducts((prevProducts) =>
+                    prevProducts.map((product) =>
+                        product.id === productId ? { ...product, isActive: !currentStatus } : product
+                    )
+                );
+                if (selectedProducts) {
+                    setSelectedProducts({ ...selectedProducts, isActive: !currentStatus });
+                }
+            } else {
+                showFailedToast(response.data.message || `Failed to ${currentStatus ? 'deactivate' : 'activate'} product.`);
+            }
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
     const HandleValue = {
         form,
         isLoading,
@@ -153,7 +177,8 @@ export const ProductProvider: React.FC<ProductProps> = ({ children }) => {
         fetchProductById,
         onFinishUpdateProduct,
         deleteProduct,
-        searchProductByName
+        searchProductByName,
+        handleDeactivateActivateProduct
     };
 
     return (

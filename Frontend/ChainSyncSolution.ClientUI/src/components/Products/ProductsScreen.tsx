@@ -10,7 +10,8 @@ import {
   Row,
   Upload,
   Tag,
-  Flex
+  Flex,
+  Switch,
 } from 'antd';
 import './ProductsScreen.css'
 import { PlusOutlined, SearchOutlined, UploadOutlined } from '@ant-design/icons';
@@ -46,7 +47,8 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
     fetchProductBySupplierId,
     fetchProductById,
     deleteProduct,
-    searchProductByName
+    searchProductByName,
+    handleDeactivateActivateProduct
   } = useProduct();
 
   useEffect(() => {
@@ -65,6 +67,8 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
   const HandleSearch = async () => {
     if (searchQuery.trim() !== '') {
       await searchProductByName(searchQuery);
+    } else {
+      await fetchProductBySupplierId(supplierId);
     }
   };
 
@@ -298,124 +302,134 @@ const ProductsScreen: React.FC<IdentitySupplierProps> = ({ supplierId }) => {
       >
         {
           selectedProducts && (
-            <Form 
-              form={form}
-              layout="vertical" 
-              key={selectedProducts.id}
-              hideRequiredMark
-              onFinish={onFinishUpdateProduct}
-              onFinishFailed={onFinishUpdateFailed}
-              initialValues={{ 
-                supplierId: supplierId,
-                productName: selectedProducts.productName,
-                phoneNumber: selectedProducts.phoneNumber,
-                price: selectedProducts.price,
-                quantityOnHand: selectedProducts.quantityOnHand,
-                description: selectedProducts.description,
-                productImage: selectedProducts.productImage 
-                  ? [{
-                      uid: '-1',
-                      name: selectedProducts.productImage.split('\\').pop(),
-                      status: 'done',
-                      url: `https://localhost:7256/${selectedProducts.productImage}`
-                    }]
-                  : []
-              }}
-            >
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="productName"
-                    label="Product Name"
-                    rules={[{ required: true, message: 'Please enter product name' }]}
-                  >
-                    <Input placeholder="Please enter product name" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="supplierId"
-                    label="Supplier Id"
-                  >
-                    <Input
-                      variant='borderless'
-                      style={{ width: '100%' }}
-                      disabled
-                    />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="phoneNumber"
-                    label="Phone Number"
-                    rules={[{ required: true, message: 'Please enter a Phone Number' }]}
-                  >
-                    <Input placeholder="Please enter Phone Number" />
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="price"
-                    label="Price"
-                    rules={[{ required: true, message: 'Please enter a Price' }]}
-                  >
-                    <Input placeholder="Please enter Price" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="productImage"
-                    label="Image"
-                    rules={[{ required: true, message: 'Please upload an Image' }]}
-                    valuePropName="fileList"
-                    getValueFromEvent={(e) => {
-                      if (Array.isArray(e)) {
-                          return e;
-                      }
-                      return e && e.fileList;
-                    }}
-                  >
-                    <Upload {...uploadProductProps} listType="picture">
-                      <Button icon={<UploadOutlined/>}>Upload Image</Button>
-                    </Upload>
-                  </Form.Item>
-                </Col>
-                <Col span={12}>
-                  <Form.Item<CreateProduct>
-                    name="quantityOnHand"
-                    label="Quantity"
-                    rules={[{ required: true, message: 'Please enter a Quantity' }]}
-                  >
-                    <Input placeholder="Please enter a Quantity" />
-                  </Form.Item>
-                </Col>
-              </Row>
-              <Row gutter={16}>
-                <Col span={24}>
-                  <Form.Item<CreateProduct>
-                    name="description"
-                    label="Description"
-                    rules={[
-                      {
-                        required: true,
-                        message: 'please enter product description',
-                      },
-                    ]}
-                  >
-                    <Input.TextArea rows={4} placeholder="please enter product description" />
-                  </Form.Item>
-                </Col>
-              </Row>
-            </Form>
+            <React.Fragment>
+              <React.Fragment>
+                <Space align="center" style={{ marginBottom: 25 }}>
+                  <label>Activate/Deactivate Product</label>
+                  <Switch 
+                    checked={selectedProducts.isActive}
+                    onChange={() => handleDeactivateActivateProduct(selectedProducts.id, selectedProducts.isActive)} 
+                  />
+                </Space>
+              </React.Fragment>
+              <Form 
+                form={form}
+                layout="vertical" 
+                key={selectedProducts.id}
+                disabled={!selectedProducts.isActive}
+                hideRequiredMark
+                onFinish={onFinishUpdateProduct}
+                onFinishFailed={onFinishUpdateFailed}
+                initialValues={{ 
+                  supplierId: supplierId,
+                  productName: selectedProducts.productName,
+                  phoneNumber: selectedProducts.phoneNumber,
+                  price: selectedProducts.price,
+                  quantityOnHand: selectedProducts.quantityOnHand,
+                  description: selectedProducts.description,
+                  productImage: selectedProducts.productImage 
+                    ? [{
+                        uid: '-1',
+                        name: selectedProducts.productImage.split('\\').pop(),
+                        status: 'done',
+                        url: `https://localhost:7256/${selectedProducts.productImage}`
+                      }]
+                    : []
+                }}
+              >
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="productName"
+                      label="Product Name"
+                      rules={[{ required: true, message: 'Please enter product name' }]}
+                    >
+                      <Input placeholder="Please enter product name" />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="supplierId"
+                      label="Supplier Id"
+                    >
+                      <Input
+                        variant='borderless'
+                        style={{ width: '100%' }}
+                        disabled
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="phoneNumber"
+                      label="Phone Number"
+                      rules={[{ required: true, message: 'Please enter a Phone Number' }]}
+                    >
+                      <Input placeholder="Please enter Phone Number" />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="price"
+                      label="Price"
+                      rules={[{ required: true, message: 'Please enter a Price' }]}
+                    >
+                      <Input placeholder="Please enter Price" />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="productImage"
+                      label="Image"
+                      rules={[{ required: true, message: 'Please upload an Image' }]}
+                      valuePropName="fileList"
+                      getValueFromEvent={(e) => {
+                        if (Array.isArray(e)) {
+                            return e;
+                        }
+                        return e && e.fileList;
+                      }}
+                    >
+                      <Upload {...uploadProductProps} listType="picture">
+                        <Button icon={<UploadOutlined/>}>Upload Image</Button>
+                      </Upload>
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    <Form.Item<CreateProduct>
+                      name="quantityOnHand"
+                      label="Quantity"
+                      rules={[{ required: true, message: 'Please enter a Quantity' }]}
+                    >
+                      <Input placeholder="Please enter a Quantity" />
+                    </Form.Item>
+                  </Col>
+                </Row>
+                <Row gutter={16}>
+                  <Col span={24}>
+                    <Form.Item<CreateProduct>
+                      name="description"
+                      label="Description"
+                      rules={[
+                        {
+                          required: true,
+                          message: 'please enter product description',
+                        },
+                      ]}
+                    >
+                      <Input.TextArea rows={4} placeholder="please enter product description" />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              </Form>
+            </React.Fragment>
           )
         }
       </Drawer>
-
-
     </React.Fragment>
   )
 }

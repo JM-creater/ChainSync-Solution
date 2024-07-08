@@ -31,7 +31,7 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
     const [selectedSupplierDashboard, setSelectedSupplierDashboard] = useState<number>(0);
     const [randomNumber, setRandomNumber] = useState<number>(0);
     const [selectNavMenu, setSelectedNavMenu] = useState<number>(0);
-    const [selectedKeySupplier, setSelectedKeySupplier] = useState<string>('1');
+    const [selectedKeySupplier, setSelectedKeySupplier] = useState<string>('0');
     const navigate = useNavigate();
     const { supplierId } = useIdentity();
 
@@ -50,7 +50,8 @@ export const MenuProvider: React.FC<MenuItemProps> = ({ children }) => {
         '7': 'Canceled Orders - ChainSync',
         '8': 'Denied Orders - ChainSync',
         '9': 'Inventory - ChainSync',
-        '10': 'Reports - ChainSync'
+        '10': 'Reports - ChainSync',
+        '0': 'ChainSync Solution'
       };
       updateDocumentTitle(titles[selectedKeySupplier]);
     }, [selectedKeySupplier]);
